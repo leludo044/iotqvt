@@ -44,6 +44,7 @@ public class WebsocketServer {
 		Mesure m = gson.fromJson(json, Mesure.class);
 		System.out.println(m.getTemp());
 		MesureEntrepot.ajouter(m);
+		broadcast(m);
 	}
 	@OnError
 	public void onError(Throwable t) throws Throwable {

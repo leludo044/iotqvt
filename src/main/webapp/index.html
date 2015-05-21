@@ -14,10 +14,15 @@
 </head>
 <body>
 	<div ng-app="iotqvt">
-		<div ng-controller="ChartCtrl as chartCtrl">
+		<div ng-controller="IOTCtrl as iotCtrl">
+		<h1>{{iotCtrl.iotSelect.id}} </h1>
+		<select ng-model="iotCtrl.iotSelect" ng-options="iot.id for iot in iotCtrl.iots"></select>
 
-			<highchart id="chart1" config="highchartsNG"></highchart>
-
+<!-- 			<highchart id="chart1" config="highchartsNG"></highchart> -->
+<!-- 			<capteur></capteur> -->
+	<div ng-repeat="capteur in iotCtrl.iotSelect.capteurs">
+		<capteur capteur="capteur"></capteur>
+	</div>
 		</div>
 
 	</div>
@@ -33,5 +38,7 @@
 
 	<script src="./app/WebSocketService.js"></script>
 	<script src="./app/ChartCtrl.js"></script>
+		<script src="./app/IOTCtrl.js"></script>
+			<script src="./app/CapteurCtrl.js"></script>
 	<script src="./app/MesureService.js"></script>
 </body>

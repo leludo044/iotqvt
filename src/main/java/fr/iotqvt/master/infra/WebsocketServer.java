@@ -19,7 +19,7 @@ import fr.iotqvt.master.modele.Mesure;
 @ServerEndpoint(value = "/websocket/mesure")
 public class WebsocketServer {
 
-	private static final Set<Session> sessions = new CopyOnWriteArraySet<>();
+	private static final Set<Session> sessions = new CopyOnWriteArraySet<Session>();
 	private Session session;
 
 	@OnOpen

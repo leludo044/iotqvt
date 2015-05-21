@@ -1,6 +1,10 @@
 
-<div  ng-controller="ChartCtrl as chartCtrl">
-<h4>Capteur {{capteur.name}}</h4>
-<highchart id="chart1" config="chartCtrl.config"></highchart>
-
+<div ng-controller="ChartCtrl as chartCtrl">
+	<h4>Capteur {{capteur.name}}</h4>
+	<h4>{{chartCtrl.last}}{{capteur.unite}}</h4>
+	<p>min {{chartCtrl.min}}{{capteur.unite}}</p>
+	<p>max {{chartCtrl.max}}{{capteur.unite}}</p>
+	<input id="borneMin" ng-model="chartCtrl.borneMin" type ="range" min ="-10" max="30" step ="1"/> {{chartCtrl.borneMin}}
+	<input id="borneMax" ng-model="chartCtrl.borneMax" type ="range" min ="-10" max="30" step ="1"/> {{chartCtrl.borneMax}}
+	<highchart id="chart1" config="chartCtrl.config"></highchart>
 </div>

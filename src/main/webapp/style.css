@@ -1,0 +1,7 @@
+[class*="col-"] {
+	background-clip: padding-box;
+	border: 10px solid transparent;
+	padding: 2%;
+	background-color: CornflowerBlue;
+	border-radius: 30px;
+}

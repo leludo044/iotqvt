@@ -1,24 +1,40 @@
 iotqvt.controller('ChartCtrl', ['MesureService', '$scope', '$rootScope', function (MesureService,$scope, $rootScope) {
+    Highcharts.setOptions({
+        chart: {
+        	backgroundColor: 'rgba(255, 255, 255, 0)',
+            plotBackgroundColor: 'rgba(255, 255, 255, 0.9)',
+            plotShadow: false,
+            
+        },
+        lang: {
+            months: ['janvier', 'février', 'mars', 'avril', 'mai', 'juin',
+                          'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'],
+            weekdays: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 
+                             'Jeudi', 'Vendredi', 'Samedi'],
+            shortMonths: ['Jan', 'Fev', 'Mar', 'Avr', 'Mai', 'Juin', 'Juil',
+                                'Aout', 'Sept', 'Oct', 'Nov', 'Déc'],
+            decimalPoint: ',',
+            downloadPNG: 'Télécharger en image PNG',
+            downloadJPEG: 'Télécharger en image JPEG',
+            downloadPDF: 'Télécharger en document PDF',
+            downloadSVG: 'Télécharger en document Vectoriel',
+            exportButtonTitle: 'Export du graphique',
+            loading: 'Chargement en cours...',
+            printButtonTitle: 'Imprimer le graphique',
+            resetZoom: 'Réinitialiser le zoom',
+            resetZoomTitle: 'Réinitialiser le zoom au niveau 1:1',
+            thousandsSep: ' ',
+            decimalPoint: ','
+        },
+        global: {
+            timezoneOffset: -2 * 60
+        }
+    });
 
-	$scope.mesures =	MesureService.mesures;
-		
-	$scope.$watchCollection('mesures', function(newMesure,  oldMesure) {
-		console.log("new");
-		console.log(newMesure);
-		console.log("old");
-		console.log(oldMesure);
-		if(oldMesure.length ===0 && newMesure.length > 0){
-			 $scope.chartCtrl.config.series.push({name:newMesure[0].id, data:[]});
-		}
-		for(x in newMesure){
-		
-			 $scope.chartCtrl.config.series[0].data.push([newMesure[x].date,newMesure[x].temp/1000]);
-		}
-		
-		});
-	
 		
 		this.capteur = $scope.capteur;
+		
+		
 		
 		this.config =  {
 	        options: {
@@ -41,27 +57,31 @@ iotqvt.controller('ChartCtrl', ['MesureService', '$scope', '$rootScope', functio
 					text : this.capteur.name+' '+this.capteur.unite
 				},
 				plotLines : [ {
-					value : 0,
+					value : 20,
 					width : 1,
-					color : '#808080'
+					color : '#ffffff'
 				} ]
 			},
 			tooltip : {
 				valueSuffix : this.capteur.unite
 			},
-			legend : {
-				layout : 'vertical',
-				align : 'right',
-				verticalAlign : 'middle',
-				borderWidth : 0
-			},
-	        series:[],
+			 legend: {
+		            enabled: false,
+		            align: 'right',
+		            verticalAlign: 'middle'
+		        },
+		
+	        series:[{
+	        	name : "test",
+	        	data : MesureService.chartData
+	        }],
 	        title: {
 	            text: '',
 	            style: {
 	                display: 'none'
 	            }
-	        }
+	        },
+	        loading:false
 	    };
 	
 

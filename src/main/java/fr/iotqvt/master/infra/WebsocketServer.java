@@ -39,16 +39,18 @@ public class WebsocketServer {
 
 	@OnMessage
 	public void incoming(String json) {
-	
-		Gson gson = new Gson();
-		Mesure m = gson.fromJson(json, Mesure.class);
-		System.out.println(m.getTemp());
-		MesureEntrepot.ajouter(m);
-		broadcast(m);
+		System.out.println(json);
+//		Gson gson = new Gson();
+//		Mesure m = gson.fromJson(json, Mesure.class);
+//		System.out.println(m.getTemp());
+//		MesureEntrepot.ajouter(m);
+		broadcastText(json);
 	}
 	@OnError
 	public void onError(Throwable t) throws Throwable {
 		System.out.println("error");
+		System.out.println(t.getMessage());
+		t.printStackTrace();
 	}
 	public void broadcast(Mesure m){
 		Gson gson = new Gson();
@@ -58,5 +60,11 @@ public class WebsocketServer {
 			uneSession.getAsyncRemote().sendText(json);
 		}
 	}
+	public void broadcastText(String json){
 	
+		
+		for(Session uneSession : sessions){
+			uneSession.getAsyncRemote().sendText(json);
+		}
+	}
 }

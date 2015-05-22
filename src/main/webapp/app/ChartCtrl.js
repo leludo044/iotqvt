@@ -31,7 +31,9 @@ iotqvt.controller('ChartCtrl', ['MesureService', '$scope', '$rootScope', functio
         }
     });
 
-		
+		this.last = MesureService.last;
+		this.max = MesureService.max;
+		this.min = MesureService.min;
 		this.capteur = $scope.capteur;
 		
 		

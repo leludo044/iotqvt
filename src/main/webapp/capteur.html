@@ -3,12 +3,13 @@
 	<h3>Capteur {{capteur.name}}</h3>
 	<div ng-if="chartCtrl.last.temp != null">
 		<h4>{{chartCtrl.last.temp/1000}}{{capteur.unite}}</h4>
-		<p>min:{{chartCtrl.max.temp/1000}}{{capteur.unite}}</p>
-		<p>max:{{chartCtrl.min.temp/1000}}{{capteur.unite}}</p>
-
+		<p>min:{{chartCtrl.min.temp/1000}}{{capteur.unite}}</p>
+		<p>max:{{chartCtrl.max.temp/1000}}{{capteur.unite}}</p>
+		<section class="range-slider" data-range-slider
+			ng-model="chartCtrl.range" max="10"></section>
+		{{chartCtrl.range}}
 	</div>
-
-<!-- 	<input type="range"> -->
+	<!-- 	<section class="range-slider" max="chartCtrl.max" min="0" ng-model="chartCtrl.range" step="0.5" data-range-slider=""> -->
 	<highchart id="chart1" config="chartCtrl.config"></highchart>
 
 </div>

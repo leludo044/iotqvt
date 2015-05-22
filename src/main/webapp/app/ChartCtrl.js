@@ -35,9 +35,50 @@ iotqvt.controller('ChartCtrl', ['MesureService', '$scope', '$rootScope', functio
 		this.max = MesureService.max;
 		this.min = MesureService.min;
 		this.capteur = $scope.capteur;
-		this.range = { from: 0, to: 10 };
-	
+		this.plotLines = [];
+		$scope.range = { from: 0, to: 18 };
+		 $scope.$watch('range', function() {
+			 console.log('test');
+//			 _.assign( $scope.chartCtrl.config.yAxis.plotLines[0],{value:$scope.range.to} );
+//			 $scope.chartCtrl.config.yAxis.plotLines[0].value = range.to
+			 $scope.chartCtrl.plotLines.push({
+	             value: $scope.range.to,
+	             color: 'red',
+	             width: 1,
+	             label: {
+	                 text: 'max',
+	                 align: 'left',
+	                 style: {
+	                     color: 'gray'
+	                 }
+	             }
+	         });
+			 console.log( $scope.chartCtrl.config.yAxis.plotLines);
+		   });
 		
+//		 [{
+//             value: 20,
+//             color: 'red',
+//             width: 1,
+//             label: {
+//                 text: 'max',
+//                 align: 'left',
+//                 style: {
+//                     color: 'gray'
+//                 }
+//             }
+//         },{
+//             value: 10,
+//             color: 'red',
+//             width: 1,
+//             label: {
+//                 text: 'min',
+//                 align: 'left',
+//                 style: {
+//                     color: 'gray'
+//                 }
+//             }
+//         }]
 		this.config =  {
 	        options: {
 	            chart: {
@@ -58,11 +99,8 @@ iotqvt.controller('ChartCtrl', ['MesureService', '$scope', '$rootScope', functio
 				title : {
 					text : this.capteur.name+' '+this.capteur.unite
 				},
-				plotLines : [ {
-					value : 20,
-					width : 1,
-					color : '#ffffff'
-				} ]
+				
+	            plotLines: this.plotLines
 			},
 			tooltip : {
 				valueSuffix : this.capteur.unite

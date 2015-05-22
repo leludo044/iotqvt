@@ -6,8 +6,8 @@
 		<p>min:{{chartCtrl.min.temp/1000}}{{capteur.unite}}</p>
 		<p>max:{{chartCtrl.max.temp/1000}}{{capteur.unite}}</p>
 		<section class="range-slider" data-range-slider
-			ng-model="chartCtrl.range" max="10"></section>
-		{{chartCtrl.range}}
+			ng-model="range" min="-10" max="40"></section>
+		{{range}}
 	</div>
 	<!-- 	<section class="range-slider" max="chartCtrl.max" min="0" ng-model="chartCtrl.range" step="0.5" data-range-slider=""> -->
 	<highchart id="chart1" config="chartCtrl.config"></highchart>

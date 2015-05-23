@@ -1,15 +1,17 @@
 package fr.iotqvt.master.launcher;
 
 import java.io.File;
+import java.net.MalformedURLException;
 
 import javax.servlet.ServletException;
 
+import org.apache.catalina.Context;
 import org.apache.catalina.LifecycleException;
 import org.apache.catalina.startup.Tomcat;
 
 public class Main {
 
-	public static void main(String[] args) throws ServletException, LifecycleException {
+	public static void main(String[] args) throws ServletException, LifecycleException, MalformedURLException {
 		String webappDirLocation = "src/main/webapp/";
         Tomcat tomcat = new Tomcat();
 
@@ -22,9 +24,10 @@ public class Main {
 
         tomcat.setPort(Integer.valueOf(webPort));
 
-        tomcat.addWebapp("/", new File(webappDirLocation).getAbsolutePath());
+        Context context =  tomcat.addWebapp("/", new File(webappDirLocation).getAbsolutePath());
         System.out.println("configuring app with basedir: " + new File("./" + webappDirLocation).getAbsolutePath());
-     
+        File configFile = new File(webappDirLocation + "WEB-INF/web.xml");
+        context.setConfigFile(configFile.toURI().toURL());
         tomcat.start();
         tomcat.getServer().await();	}
 

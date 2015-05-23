@@ -1,4 +1,4 @@
-package fr.iotqvt.master.infra;
+package fr.iotqvt.master.websocket;
 
 
 import java.util.Set;
@@ -13,6 +13,7 @@ import javax.websocket.server.ServerEndpoint;
 
 import com.google.gson.Gson;
 
+import fr.iotqvt.master.infra.MesureEntrepot;
 import fr.iotqvt.master.modele.Mesure;
 
 
@@ -40,11 +41,17 @@ public class WebsocketServer {
 	@OnMessage
 	public void incoming(String json) {
 		System.out.println(json);
-//		Gson gson = new Gson();
-//		Mesure m = gson.fromJson(json, Mesure.class);
-//		System.out.println(m.getTemp());
-//		MesureEntrepot.ajouter(m);
-		broadcastText(json);
+		try{
+			Gson gson = new Gson();
+			Mesure m = gson.fromJson(json, Mesure.class);
+			System.out.println(m.getTemp());
+			MesureEntrepot.ajouter(m);
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			broadcastText(json);
+		}
+		
 	}
 	@OnError
 	public void onError(Throwable t) throws Throwable {

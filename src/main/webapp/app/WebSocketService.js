@@ -1,6 +1,6 @@
 iotqvt.factory('WebSocketService', ['$q', '$rootScope', '_', '$timeout' ,function($q, $rootScope, _, $timeout) {
 	var _onReceiveData = _.noop;
-	
+
 	
     var Service = {};
 

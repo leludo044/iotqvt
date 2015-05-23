@@ -1,4 +1,4 @@
-iotqvt.factory('WebSocketFactory', ['$q', '$rootScope', '_', '$timeout' ,function($q, $rootScope, _, $timeout) {
+iotqvt.factory('WebServiceFactory', ['$q', '$rootScope', '_', '$timeout' ,function($q, $rootScope, _, $timeout) {
 	var _onReceiveData = _.noop;
 	
 	
@@ -18,6 +18,7 @@ iotqvt.factory('WebSocketFactory', ['$q', '$rootScope', '_', '$timeout' ,functio
 
     function listener(data) {
       $timeout(function () {
+    	  console.log("webservice receiveData")
     	  _onReceiveData(data);
       });
 	

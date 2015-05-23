@@ -9,7 +9,12 @@ iotqvt.factory('WebServiceFactory', ['$q', '$rootScope', '_', '$timeout', '$http
 	
 
     
-    	   $http.get(url).success( listener(data) );
+    	   $http.get(url).success( function(data){
+    		   listener(data) ;
+    		   }
+    		   
+    	   );
+    	   
     
  
     

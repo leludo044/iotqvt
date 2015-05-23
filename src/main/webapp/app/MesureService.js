@@ -22,6 +22,7 @@ iotqvt.service('MesureService', function(WebSocketService,WebServiceFactory, _) 
 		date : null
 	};
 	WebServiceFactory.onReceiveData(function(data) {
+		var x;
 		for(x in data){
 			mesures.push(data[x]);
 			chartData.push([ data[x].date, data[x].temp / 1000 ]);

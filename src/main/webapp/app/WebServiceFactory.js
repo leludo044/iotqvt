@@ -1,4 +1,4 @@
-iotqvt.factory('WebServiceFactory', ['$q', '$rootScope', '_', '$timeout' ,function($q, $rootScope, _, $timeout) {
+iotqvt.factory('WebServiceFactory', ['$q', '$rootScope', '_', '$timeout', '$http' ,function($q, $rootScope, _, $timeout, $http) {
 	var _onReceiveData = _.noop;
 	
 	

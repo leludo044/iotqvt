@@ -4,12 +4,12 @@ iotqvt.factory('WebServiceFactory', ['$q', '$rootScope', '_', '$timeout' ,functi
 	
     var Service = {};
 
-    var ws = new WebSocket("http://" + document.location.hostname + ":" + document.location.port
-    		+ document.location.pathname + "webservice/mesure");
+    var url = "http://" + document.location.hostname + ":" + document.location.port
+    		+ document.location.pathname + "webservice/mesure";
 	
 
     
-    	   $http.get(ws).success( listener(data) );
+    	   $http.get(url).success( listener(data) );
     
  
     

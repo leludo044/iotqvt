@@ -1,6 +1,8 @@
 'use strict';
 
 iotqvt.service('MesureService', function(WebSocketService, _) {
+	
+	
 	var mesures = [];
 	var chartData = [];
 	var last = {
@@ -15,10 +17,20 @@ iotqvt.service('MesureService', function(WebSocketService, _) {
 		temp : null,
 		date : null
 	};
+	var first = {
+		temp : null,
+		date : null
+	};
+
+	
+	
 	WebSocketService.onReceiveData(function(data) {
 		mesures.push(data);
 		chartData.push([ data.date, data.temp / 1000 ]);
 		_.assign(last, _.max(mesures, function(mesure) {
+			return mesure.date;
+		}));
+		_.assign(first, _.min(mesures, function(mesure) {
 			return mesure.date;
 		}));
 		_.assign(max, _.max(mesures, function(mesure) {
@@ -27,11 +39,14 @@ iotqvt.service('MesureService', function(WebSocketService, _) {
 		_.assign(min, _.min(mesures, function(mesure) {
 			return mesure.temp;
 		}));
+
+
 	});
 	return {
 		mesures : mesures,
 		chartData : chartData,
 		last : last,
+		first : first,
 		min : min,
 		max : max
 	};

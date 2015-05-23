@@ -87,7 +87,8 @@
                 throttle: '=',
                 step: '=',
                 max: '=',
-                min: '='
+                min: '=',
+                change: '=change'
             },
 
             /**
@@ -202,10 +203,12 @@
                             // Sometimes we're outside of the Angular run-loop, and therefore need to manually
                             // invoke the `apply` method!
                             scope.$apply();
-
+                           
                         } catch(e) {}
 
                     }
+//                    console.log("change");
+                    scope.change(scope.model);
 
                 };
 

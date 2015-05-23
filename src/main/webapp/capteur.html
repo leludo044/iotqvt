@@ -5,11 +5,19 @@
 		<h4>{{chartCtrl.last.temp/1000}}{{capteur.unite}}</h4>
 		<p>min:{{chartCtrl.min.temp/1000}}{{capteur.unite}}</p>
 		<p>max:{{chartCtrl.max.temp/1000}}{{capteur.unite}}</p>
-		<section class="range-slider" data-range-slider
-			ng-model="range" min="-10" max="40"></section>
-		{{range}}
+		
 	</div>
 	<!-- 	<section class="range-slider" max="chartCtrl.max" min="0" ng-model="chartCtrl.range" step="0.5" data-range-slider=""> -->
 	<highchart id="chart1" config="chartCtrl.config"></highchart>
+	
+	<div ng-if="chartCtrl.range != null">
+	
+	<section class="range-slider" data-range-slider
+			ng-model="chartCtrl.range" min="-10" max="40" change="chartCtrl.setPlot"></section>
+			
+	<p>ref-min:{{chartCtrl.range.from}}</p>
+	<p>ref-max:{{chartCtrl.range.to}}</p>			
+			
+	</div>
 
 </div>

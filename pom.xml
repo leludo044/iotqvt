@@ -9,12 +9,16 @@
 		<compiler-plugin.version>3.1</compiler-plugin.version>
 		<assembly-plugin.version>2.5.4</assembly-plugin.version>
 		<java.version>1.8</java.version>
-		<tomcat.version>7.0.57</tomcat.version>
+		<tomcat.version>8.0.23</tomcat.version>
 	</properties>
 
 	<dependencies>
-
-
+		<!-- persisance -->
+		<dependency>
+			<groupId>redis.clients</groupId>
+			<artifactId>jedis</artifactId>
+			<version>2.7.2</version>
+		</dependency>
 		<!-- json -->
 		<dependency>
 			<groupId>com.google.code.gson</groupId>
@@ -26,7 +30,7 @@
 			<artifactId>jackson-core</artifactId>
 			<version>2.5.3</version>
 		</dependency>
-		
+
 		<!-- WebService -->
 		<dependency>
 			<groupId>org.glassfish.jersey.core</groupId>

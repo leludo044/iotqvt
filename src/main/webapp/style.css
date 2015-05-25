@@ -52,3 +52,21 @@ section.range-slider input:last-of-type::-moz-range-track {
     background: none transparent;
     border: 0;
 }
+
+h1 {
+	margin-top: 70px;
+	text-align: center;
+	color: #2E55C9;
+	font-weight: bold;
+}
+
+#b2 {
+	margin-right: 10px;
+}
+
+#rechercher {
+
+}
+.form-group {
+	border-width: 5px;
+}

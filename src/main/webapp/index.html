@@ -15,10 +15,43 @@
 </head>
 <body>
 	<div ng-app="iotqvt">
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+	<div class="container">
+		<img src="images/avatar2.jpg" alt="profil amaury" class="img-circle">
+		<p class="navbar-text"> Connecté <a href="#" class="navbar-link"> Prénom NOM </a></p>
+		<button id="b1" type="button" class="btn btn-default btn-primary navbar-btn navbar-right">
+		<span class="glyphicon glyphicon-off" aria-hidden="true"></span>  Se Déconnecter 
+		</button>
+		<button id="b2" type="button" class="btn btn-default navbar-btn navbar-right" aria-label="Right Align">
+ 		 <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+		</button>
+	</div>
+	</nav>
 		<div class="container" ng-controller="IOTCtrl as iotCtrl">
-			<h1>{{iotCtrl.iotSelect.id}}</h1>
+		<h1>Qualité de vie au travail et facteurs environnementaux</h1>
+			<h2>{{iotCtrl.iotSelect.id}}</h2>
+		<div class="container" id="rechercher">
 			<select ng-model="iotCtrl.iotSelect"
 				ng-options="iot.id for iot in iotCtrl.iots"></select>
+			<button id="b3" type="button" class="btn btn-info" aria-label="Left Align">
+ 	 			<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+			</button>
+		<form class="navbar-form navbar-left has-success" role="search">
+  		<div class="form-group">
+   			 <input type="text" class="form-control" placeholder="Entité">
+ 		 </div>
+		</form>
+			<form class="navbar-form navbar-left has-warning" role="search">
+  		<div class="form-group">
+   			 <input type="text" class="form-control" placeholder="Pièce">
+  		</div>
+		</form>
+			<form class="navbar-form navbar-left has-error" role="search">
+  		<div class="form-group">
+   			<input type="text" class="form-control" placeholder="IOT">
+  		</div>
+			</form>
+		</div>
 			<div class="row">
 				<div  class="col-md-6" ng-repeat="capteur in iotCtrl.iotSelect.capteurs">
 				

@@ -64,11 +64,16 @@ h1 {
 	margin-right: 10px;
 }
 
+#titre2 {
+	text-align: center;
+}
+
 #meteo1 {
 	background-color: #C4D7ED;
 	border-radius: 30px;
 	padding: 2%;
 	padding-top: 1%;
+	margin-top: 2%;
 }
 
 #meteo2 {

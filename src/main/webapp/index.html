@@ -15,55 +15,68 @@
 </head>
 <body>
 	<div ng-app="iotqvt">
-	<nav class="navbar navbar-inverse navbar-fixed-top">
-	<div class="container">
-		<img src="images/avatar2.jpg" alt="profil amaury" class="img-circle">
-		<p class="navbar-text"> Connecté <a href="#" class="navbar-link"> Prénom NOM </a></p>
-		<button id="b1" type="button" class="btn btn-default btn-primary navbar-btn navbar-right">
-		<span class="glyphicon glyphicon-off" aria-hidden="true"></span>
-		</button>
-		<button id="b2" type="button" class="btn btn-default navbar-btn navbar-right" aria-label="Right Align">
- 		 <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-		</button>
-	</div>
-	</nav>
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+			<div class="container">
+				<img src="images/avatar2.jpg" alt="profil amaury" class="img-circle">
+				<p class="navbar-text">
+					Connecté <a href="#" class="navbar-link"> Prénom NOM </a>
+				</p>
+				<button id="b1" type="button"
+					class="btn btn-default btn-primary navbar-btn navbar-right">
+					<span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+				</button>
+				<button id="b2" type="button"
+					class="btn btn-default navbar-btn navbar-right"
+					aria-label="Right Align">
+					<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+				</button>
+			</div>
+		</nav>
 		<div class="container" ng-controller="IOTCtrl as iotCtrl">
-		<h1>Qualité de vie au travail et facteurs environnementaux</h1>
+			<h1>Qualité de vie au travail et facteurs environnementaux</h1>
+			<div class="container" id="rechercher">
+				<form class="row">
+					<div class=" col-md-3">
+						<select class="form-control" ng-model="iotCtrl.iotSelect"
+							ng-options="iot.id for iot in iotCtrl.iots"></select>
+					</div>
+					<div class=" col-md-3">
+						<div class="form-group has-success has-feedback">
+							<input type="text" class="form-control" placeholder="Entité"
+								id="inputSuccess2" aria-describedby="inputSuccess2Status">
+							<span class="glyphicon glyphicon-ok form-control-feedback"
+								aria-hidden="true"></span> <span id="inputSuccess2Status"
+								class="sr-only">(success)</span>
+						</div>
+					</div>
+					<div class=" col-md-3">
+						<div class="form-group has-warning">
+							<input type="text" class="form-control" placeholder="Pièce">
+						</div>
+					</div>
+					<div class=" col-md-3">
+						<div class="form-group has-error has-feedback">
+							<input type="text" class="form-control" placeholder="IOT"
+								id="inputError2" aria-describedby="inputError2Status"> <span
+								class="glyphicon glyphicon-remove form-control-feedback"
+								aria-hidden="true"></span> <span id="inputError2Status"
+								class="sr-only">(error)</span>
+						</div>
+					</div>
+				</form>
+			</div>
 			<h2>{{iotCtrl.iotSelect.id}}</h2>
-		<div class="container" id="rechercher">
-			<select ng-model="iotCtrl.iotSelect"
-				ng-options="iot.id for iot in iotCtrl.iots"></select>
-			<button id="b3" type="button" class="btn btn-info" aria-label="Left Align">
- 	 			<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-			</button>
-		<form class="navbar-form navbar-left" role="search">
-  		<div class="form-group has-success has-feedback">
-   			 <input type="text" class="form-control" placeholder="Entité" id="inputSuccess2" aria-describedby="inputSuccess2Status">
- 			 <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
- 			 <span id="inputSuccess2Status" class="sr-only">(success)</span>
- 		 </div>
-		</form>
-			<form class="navbar-form navbar-left" role="search">
-  		<div class="form-group has-warning">
-   			 <input type="text" class="form-control" placeholder="Pièce">
-  		</div>
-		</form>
-			<form class="navbar-form navbar-left" role="search">
-  		<div class="form-group has-error has-feedback">
-   			<input type="text" class="form-control" placeholder="IOT" id="inputError2" aria-describedby="inputError2Status">
-   			<span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
-   			<span id="inputError2Status" class="sr-only">(error)</span>
-  		</div>
-			</form>
-		</div>
 			<div class="row">
-				<div  class="col-md-6" ng-repeat="capteur in iotCtrl.iotSelect.capteurs">
-				
-						<capteur capteur="capteur"></capteur>
-				
+				<div class="col-md-6"
+					ng-repeat="capteur in iotCtrl.iotSelect.capteurs">
+
+					<capteur capteur="capteur"></capteur>
+
 				</div>
 			</div>
-
+			<div class="container" id="meteo1">
+				<h2 id="meteo2">Météo</h2>
+			</div>
 
 		</div>
 
@@ -75,9 +88,10 @@
 	<script src="./lib/highcharts/highcharts.js"></script>
 	<script src="./lib/highcharts-ng/highcharts-ng.js"></script>
 	<script src="./lib/lodash/lodash.js"></script>
-	<script src="./lib/ng-range-slider/ng-range-slider.js" type="text/javascript"></script>
-	
-	
+	<script src="./lib/ng-range-slider/ng-range-slider.js"
+		type="text/javascript"></script>
+
+
 	<script src="./app/app.js"></script>
 
 	<script src="./app/WebSocketService.js"></script>

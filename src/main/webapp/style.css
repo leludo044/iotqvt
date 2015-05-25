@@ -1,4 +1,4 @@
-[class*="col-"] {
+[class*="col-md-6"] {
 	background-clip: padding-box;
 	border: 10px solid transparent;
 	padding: 2%;
@@ -64,9 +64,15 @@ h1 {
 	margin-right: 10px;
 }
 
-#rechercher {
+#meteo1 {
+	background-color: #7C92F2;
+}
 
+#rechercher {
+	background-color: #98A4D9;
+	padding: 2%;
+/* 	padding-top: 1%; */
+	padding-bottom: 1%;
+	border-radius: 30px;
 }
-.form-group {
-	border-width: 5px;
-}
+

@@ -17,7 +17,7 @@
 	<div ng-app="iotqvt">
 		<nav class="navbar navbar-inverse navbar-fixed-top">
 			<div class="container">
-				<img src="images/avatar2.jpg" alt="profil amaury" class="img-circle">
+				<img src="images/avatar2.jpg" alt="profil" class="img-circle">
 				<p class="navbar-text">
 					Connecté <a href="#" class="navbar-link"> Prénom NOM </a>
 				</p>
@@ -32,6 +32,7 @@
 				</button>
 			</div>
 		</nav>
+
 		<div class="container" ng-controller="IOTCtrl as iotCtrl">
 			<h1>Qualité de vie au travail et facteurs environnementaux</h1>
 			<div class="container" id="rechercher">
@@ -75,7 +76,18 @@
 				</div>
 			</div>
 			<div class="container" id="meteo1">
+			<form class="row">
 				<h2 id="meteo2">Météo</h2>
+				<div class=" col-md-4">
+					<img id="soleil" alt="soleil" src="images/soleil.png">
+				</div>
+				<div class=" col-md-4">
+					<p id="meteo3">Ensoleillé</p>
+				</div>
+				<div class=" col-md-4">
+					<p id="tempterature">25°C</p>
+				</div>
+				</form>
 			</div>
 
 		</div>

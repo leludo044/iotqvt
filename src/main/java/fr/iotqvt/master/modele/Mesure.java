@@ -1,6 +1,6 @@
 package fr.iotqvt.master.modele;
 
-public class Mesure {
+public class Mesure implements Comparable<Mesure>{
 	
 	private int temp;
 	private long date;
@@ -27,6 +27,16 @@ public class Mesure {
 	}
 	public void setId(String id) {
 		this.id = id;
+	}
+	@Override
+	public int compareTo(Mesure o) {
+		if ( this.getDate() <  o.getDate())
+	        return -1;
+	    if (this.getDate() >(o.getDate()))
+	        return 1;
+	    
+		return 0;
+	    
 	}
 
 }

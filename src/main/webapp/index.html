@@ -20,7 +20,7 @@
 		<img src="images/avatar2.jpg" alt="profil amaury" class="img-circle">
 		<p class="navbar-text"> Connecté <a href="#" class="navbar-link"> Prénom NOM </a></p>
 		<button id="b1" type="button" class="btn btn-default btn-primary navbar-btn navbar-right">
-		<span class="glyphicon glyphicon-off" aria-hidden="true"></span>  Se Déconnecter 
+		<span class="glyphicon glyphicon-off" aria-hidden="true"></span>
 		</button>
 		<button id="b2" type="button" class="btn btn-default navbar-btn navbar-right" aria-label="Right Align">
  		 <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
@@ -36,19 +36,23 @@
 			<button id="b3" type="button" class="btn btn-info" aria-label="Left Align">
  	 			<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
 			</button>
-		<form class="navbar-form navbar-left has-success" role="search">
-  		<div class="form-group">
-   			 <input type="text" class="form-control" placeholder="Entité">
+		<form class="navbar-form navbar-left" role="search">
+  		<div class="form-group has-success has-feedback">
+   			 <input type="text" class="form-control" placeholder="Entité" id="inputSuccess2" aria-describedby="inputSuccess2Status">
+ 			 <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+ 			 <span id="inputSuccess2Status" class="sr-only">(success)</span>
  		 </div>
 		</form>
-			<form class="navbar-form navbar-left has-warning" role="search">
-  		<div class="form-group">
+			<form class="navbar-form navbar-left" role="search">
+  		<div class="form-group has-warning">
    			 <input type="text" class="form-control" placeholder="Pièce">
   		</div>
 		</form>
-			<form class="navbar-form navbar-left has-error" role="search">
-  		<div class="form-group">
-   			<input type="text" class="form-control" placeholder="IOT">
+			<form class="navbar-form navbar-left" role="search">
+  		<div class="form-group has-error has-feedback">
+   			<input type="text" class="form-control" placeholder="IOT" id="inputError2" aria-describedby="inputError2Status">
+   			<span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+   			<span id="inputError2Status" class="sr-only">(error)</span>
   		</div>
 			</form>
 		</div>

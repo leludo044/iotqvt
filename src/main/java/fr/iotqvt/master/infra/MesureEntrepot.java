@@ -15,7 +15,7 @@ private static ArrayList<Mesure> list = new ArrayList<Mesure>();
 public static void ajouter(Mesure m){
 	URI redisURI = null;
 	  try {
-		 redisURI = new URI(":1nJi6I8z7Z8jJNfd@pub-redis-18189.eu-west-1-1.1.ec2.garantiadata.com:18189");
+		 redisURI = new URI("redis://:1nJi6I8z7Z8jJNfd@pub-redis-18189.eu-west-1-1.1.ec2.garantiadata.com:18189");
 	} catch (URISyntaxException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();

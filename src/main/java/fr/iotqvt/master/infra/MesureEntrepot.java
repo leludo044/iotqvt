@@ -3,6 +3,7 @@ package fr.iotqvt.master.infra;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
@@ -48,7 +49,7 @@ public static List<Mesure> getAll(){
 		list.add(m);
 	}
 	jedis.close();
-	
+	Collections.sort(list);
 	return list;
 }
 

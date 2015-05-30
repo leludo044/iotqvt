@@ -84,19 +84,32 @@ iotqvt.controller('ChartCtrl', [
 					type : 'datetime',
 					dateTimeLabelFormats : {
 						month : '%e. %b',
-						year : '%b'
+						year : '%b',
 					},
+					tickColor: '#00004A',
+				    tickWidth: 2,
+				    minorGridLineWidth: 0,
+		            minorTickInterval: 'auto',
+		            minorTickColor: '#000000',
+		            minorTickWidth: 1,
 					title : {
-						text : 'Date'
+						text : 'Date',
+						style: { "color": "#00002E", "fontWeight": "bold" }
 					}
 				},
 				yAxis : {
 					title : {
-						text : this.capteur.name + ' ' + this.capteur.unite
+						text : this.capteur.name + ' ' + this.capteur.unite,
+						style: { "color": "#00002E", "fontWeight": "bold" }
 					},
 					minRange : 10,
-					plotLines : plotLines
-
+					plotLines : plotLines,
+					tickColor: '#00004A',
+				    tickWidth: 2,
+				    minorGridLineWidth: 0,
+		            minorTickInterval: 'auto',
+		            minorTickColor: '#000000',
+		            minorTickWidth: 1
 				},
 				tooltip : {
 					valueSuffix : this.capteur.unite
@@ -108,8 +121,9 @@ iotqvt.controller('ChartCtrl', [
 				},
 
 				series : [ {
-					name : "test",
-					data : MesureService.chartData
+					name : "Test",
+					data : MesureService.chartData,
+					color:"#00004A"
 				}
 
 				],

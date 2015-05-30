@@ -1,10 +1,13 @@
 .capteur {
 	background-clip: padding-box;
 	border: 10px solid transparent;
-	padding: 2%;
+	padding: 0.5% 2%;
 	border-radius: 30px;
 }
 
+body {
+	background-color: #4b4b4b;
+}
 .capteur-bleu {
 	background-color: #70DAE8;
 }
@@ -18,9 +21,25 @@
 }
 
 h3 {
-	color: black;
-	font-size: 20px;
+	color: #333333;
+	font-size: 25px;
 	font-weight: bold;
+}
+
+.titre3 {
+	color: #4b4b4b;
+	font-size: 22px;
+	font-weight: bold;
+}
+
+.min {
+	color: #585858;
+	font-size: 18px;
+}
+
+.max {
+	color: #585858;
+	font-size: 18px;
 }
 
 section.range-slider {
@@ -74,31 +93,36 @@ section.range-slider input:last-of-type::-moz-range-track {
 h1 {
 	margin-top: 70px;
 	text-align: center;
-	color: #183152;
+	color: #D7D7D7;
 	font-weight: bold;
 }
 
 #profil {
 	margin-left: 20px;
 	margin-right: 10px;
+	float: left;
 }
 
 #nom1 {
 	margin-right: 20px;
+	float: left;
+    margin-top: 15px; 
 }
 
 #parametre {
 	margin-right: 5px;
+	margin-left: 5px;
+	float: right;
 }
 
 #deconnexion {
-	
+	float: right;
 }
 
 #titre2 {
 	text-align: left;
 	font-weight: bold;
-	color: black; 
+	color: #333333; 
 	background-color : #E8C97A; 
 	border-radius : 30px;
 	padding: 1% 2%;
@@ -108,12 +132,12 @@ h1 {
 
 #entite {
 	padding-top: 2%;
-	color: #575757;
+	color: #585858;
 	font-size: 18px;
 }
 
 #piece {
-	color: #575757;
+	color: #585858;
 	font-size: 18px;
 }
 
@@ -125,6 +149,7 @@ h1 {
 	display: inline-block;
 	float: right;
 	margin-top: 1%;
+	border: 3px solid #444444;
 }
 
 .statut-rouge {

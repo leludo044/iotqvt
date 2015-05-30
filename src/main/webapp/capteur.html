@@ -7,10 +7,10 @@
 		<div ng-if="capteur.statut=='vert'"
 			class="statut statut-vert"></div>
 	</h3>
-	<div ng-if="chartCtrl.last.temp != null">
-		<h4>{{chartCtrl.last.temp/1000}}{{capteur.unite}}</h4>
-		<p>min:{{chartCtrl.min.temp/1000}}{{capteur.unite}}</p>
-		<p>max:{{chartCtrl.max.temp/1000}}{{capteur.unite}}</p>
+	<div ng-if="chartCtrl.last.valeur != null">
+		<h4>{{chartCtrl.last.valeur}}{{capteur.unite}}</h4>
+		<p>min:{{chartCtrl.min.valeur}}{{capteur.unite}}</p>
+		<p>max:{{chartCtrl.max.valeur}}{{capteur.unite}}</p>
 
 	</div>
 	<!-- 	<section class="range-slider" max="chartCtrl.max" min="0" ng-model="chartCtrl.range" step="0.5" data-range-slider=""> -->

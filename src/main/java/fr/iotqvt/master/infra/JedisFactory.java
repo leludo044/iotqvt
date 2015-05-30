@@ -20,6 +20,9 @@ public static Jedis getInstance(){
 		}
 		jedis = new Jedis(redisURI);
 	}
+	if(jedis==null){
+		System.out.println("null");
+	}
 
 	
 	return jedis;

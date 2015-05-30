@@ -12,8 +12,9 @@ public class MesureEntrepot {
 	
 
 public static void ajouter(Mesure m){
-	
-	JedisFactory.getInstance().set("iot:test:capteur:"+m.getCapteur().getId()+":mesure:"+String.valueOf(m.getDate()), String.valueOf(m.getValeur()));
+	String key = "iot:test:capteur:"+m.getCapteur().getId()+":mesure:"+String.valueOf(m.getDate());
+	String value = 	String.valueOf(m.getValeur());
+	JedisFactory.getInstance().set(key, value);
 	
 }
 

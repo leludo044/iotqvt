@@ -23,7 +23,7 @@ public static void ajouter(Mesure m){
 		e.printStackTrace();
 	}
 	Jedis jedis = new Jedis(redisURI);
-	jedis.set(String.valueOf(m.getDate()), String.valueOf(m.getTemp()));
+	jedis.set("iot:test:capteur:"+m.getCapteur().getId()+":mesure:"+String.valueOf(m.getDate()), String.valueOf(m.getValeur()));
 	jedis.close();
 //	list.add(m);
 }
@@ -38,13 +38,12 @@ public static List<Mesure> getAll(){
 		e.printStackTrace();
 	}
 	Jedis jedis = new Jedis(redisURI);
-	Set<String> keys = jedis.keys("*");
+	Set<String> keys = jedis.keys("iot:test:capteur:*:mesure:*");
 	for (String key : keys) {
 		Mesure m = new Mesure();
 		String value = jedis.get(key);
-		m.setId("test");
 		m.setDate(Long.parseLong(key));
-		m.setTemp(Integer.valueOf(value));
+		m.setValeur(Float.valueOf(value));
 	
 		list.add(m);
 	}

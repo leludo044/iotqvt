@@ -1,20 +1,38 @@
 package fr.iotqvt.master.modele;
 
-public class Mesure implements Comparable<Mesure>{
+import com.google.gson.Gson;
+
+public class Mesure implements Comparable<Mesure> {
 	
-	private int temp;
+	private Float valeur;
 	private long date;
-	private String id;
+	private Capteur capteur;
 	
-	
+
+	public Mesure(Float valeur, long date, Capteur capteur) {
+		super();
+		this.valeur = valeur;
+		this.date = date;
+		this.capteur = capteur;
+	}
+
 	public Mesure() {
 		
 	}
-	public int getTemp() {
-		return temp;
+	
+	public Capteur getCapteur() {
+		return capteur;
 	}
-	public void setTemp(int temp) {
-		this.temp = temp;
+
+	public void setCapteur(Capteur capteur) {
+		this.capteur = capteur;
+	}
+
+	public Float getValeur() {
+		return valeur;
+	}
+	public void setValeur(Float valeur) {
+		this.valeur = valeur;
 	}
 	public long getDate() {
 		return date;
@@ -22,12 +40,12 @@ public class Mesure implements Comparable<Mesure>{
 	public void setDate(long date) {
 		this.date = date;
 	}
-	public String getId() {
-		return id;
+	@Override
+	public String toString() {
+		Gson gson = new Gson();
+		return gson.toJson(this);
 	}
-	public void setId(String id) {
-		this.id = id;
-	}
+
 	@Override
 	public int compareTo(Mesure o) {
 		if ( this.getDate() <  o.getDate())

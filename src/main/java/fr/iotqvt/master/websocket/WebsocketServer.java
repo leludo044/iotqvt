@@ -45,7 +45,7 @@ public class WebsocketServer {
 			Gson gson = new Gson();
 			Mesure m = gson.fromJson(json, Mesure.class);
 			
-			System.out.println(m.getValeur()+" "+m.getCapteur());
+			System.out.println(m.getValeur()+" "+m.getCapteur().getId());
 			MesureEntrepot.ajouter(m);
 		}catch(Exception e){
 			e.printStackTrace();

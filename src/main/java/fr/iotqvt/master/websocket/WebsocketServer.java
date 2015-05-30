@@ -40,11 +40,12 @@ public class WebsocketServer {
 
 	@OnMessage
 	public void incoming(String json) {
-		System.out.println(json);
+		System.out.println("onMessage"+json);
 		try{
 			Gson gson = new Gson();
 			Mesure m = gson.fromJson(json, Mesure.class);
-			System.out.println(m.getValeur());
+			
+			System.out.println(m.getValeur()+" "+m.getCapteur());
 			MesureEntrepot.ajouter(m);
 		}catch(Exception e){
 			e.printStackTrace();

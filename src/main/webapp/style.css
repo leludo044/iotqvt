@@ -19,8 +19,24 @@
 
 h3 {
 	color: black;
-	font-size: 20px;
+	font-size: 25px;
 	font-weight: bold;
+}
+
+.titre3 {
+	color: #183a41;
+	font-size: 22px;
+	font-weight: bold;
+}
+
+.min {
+	color: #235661;
+	font-size: 18px;
+}
+
+.max {
+	color: #235661;
+	font-size: 18px;
 }
 
 section.range-slider {
@@ -81,18 +97,23 @@ h1 {
 #profil {
 	margin-left: 20px;
 	margin-right: 10px;
+	float: left;
 }
 
 #nom1 {
 	margin-right: 20px;
+	float: left;
+    margin-top: 15px; 
 }
 
 #parametre {
 	margin-right: 5px;
+	margin-left: 5px;
+	float: right;
 }
 
 #deconnexion {
-	
+	float: right;
 }
 
 #titre2 {
@@ -125,6 +146,7 @@ h1 {
 	display: inline-block;
 	float: right;
 	margin-top: 1%;
+	border: 3px solid #444444;
 }
 
 .statut-rouge {

@@ -44,13 +44,14 @@ public class WebsocketServer {
 		try{
 			Gson gson = new Gson();
 			Mesure m = gson.fromJson(json, Mesure.class);
-			
-			System.out.println(m.getValeur()+" "+m.getCapteur().getId());
-			MesureEntrepot.ajouter(m);
+			if(m.getCapteur() != null){
+				MesureEntrepot.ajouter(m);
+				broadcastText(json);
+			}
+	
+		
 		}catch(Exception e){
 			e.printStackTrace();
-		}finally{
-			broadcastText(json);
 		}
 		
 	}

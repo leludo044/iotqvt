@@ -27,7 +27,7 @@ public static List<Mesure> getAll(){
 	for (String key : keys) {
 		Mesure m = new Mesure();
 		String value = jedis.get(key);
-		m.setDate(Long.parseLong(key));
+		m.setDate(Long.parseLong(key.substring(key.length()-10)));
 		m.setValeur(Float.valueOf(value));
 	
 		list.add(m);

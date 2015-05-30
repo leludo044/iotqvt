@@ -1,10 +1,13 @@
 .capteur {
 	background-clip: padding-box;
 	border: 10px solid transparent;
-	padding: 2%;
+	padding: 0.5% 2%;
 	border-radius: 30px;
 }
 
+body {
+	background-color: #4b4b4b;
+}
 .capteur-bleu {
 	background-color: #70DAE8;
 }
@@ -18,24 +21,24 @@
 }
 
 h3 {
-	color: black;
+	color: #333333;
 	font-size: 25px;
 	font-weight: bold;
 }
 
 .titre3 {
-	color: #183a41;
+	color: #4b4b4b;
 	font-size: 22px;
 	font-weight: bold;
 }
 
 .min {
-	color: #235661;
+	color: #585858;
 	font-size: 18px;
 }
 
 .max {
-	color: #235661;
+	color: #585858;
 	font-size: 18px;
 }
 
@@ -90,7 +93,7 @@ section.range-slider input:last-of-type::-moz-range-track {
 h1 {
 	margin-top: 70px;
 	text-align: center;
-	color: #183152;
+	color: #D7D7D7;
 	font-weight: bold;
 }
 
@@ -119,7 +122,7 @@ h1 {
 #titre2 {
 	text-align: left;
 	font-weight: bold;
-	color: black; 
+	color: #333333; 
 	background-color : #E8C97A; 
 	border-radius : 30px;
 	padding: 1% 2%;
@@ -129,12 +132,12 @@ h1 {
 
 #entite {
 	padding-top: 2%;
-	color: #575757;
+	color: #585858;
 	font-size: 18px;
 }
 
 #piece {
-	color: #575757;
+	color: #585858;
 	font-size: 18px;
 }
 

@@ -16,32 +16,29 @@
 <body>
 	<div ng-app="iotqvt">
 		<nav class="navbar navbar-inverse navbar-fixed-top">
-			<div class="container">
-				<img src="images/avatar2.jpg" alt="profil" class="img-circle">
-				<p class="navbar-text">
-					Connecté <a href="#" class="navbar-link"> Prénom NOM </a>
-				</p>
-				<button id="b1" type="button"
-					class="btn btn-default btn-primary navbar-btn navbar-right">
-					<span class="glyphicon glyphicon-off" aria-hidden="true"></span>
-				</button>
-				<button id="b2" type="button"
-					class="btn btn-default navbar-btn navbar-right"
-					aria-label="Right Align">
+			<div class="container" id="menu">
+				<img id="profil" src="images/avatar2.jpg" alt="profil"
+					class="img-circle"> 
+				<a id="nom1" href="#" class="navbar-link">Prénom NOM </a>
+				<button id="parametre" type="button"
+					class="btn btn-default navbar-btn">
 					<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+				</button>
+				<button id="deconnexion" type="button"
+					class="btn btn-default btn-primary navbar-btn">
+					<span class="glyphicon glyphicon-off" aria-hidden="true"></span>
 				</button>
 			</div>
 		</nav>
-
 		<div class="container" ng-controller="IOTCtrl as iotCtrl">
 			<h1>Qualité de vie au travail et facteurs environnementaux</h1>
 			<div class="container" id="rechercher">
 				<form class="row">
-					<div class=" col-md-3">
+					<div class="col-md-3">
 						<select class="form-control" ng-model="iotCtrl.iotSelect"
 							ng-options="iot.id for iot in iotCtrl.iots"></select>
 					</div>
-					<div class=" col-md-3">
+					<div class="col-md-3">
 						<div class="form-group has-success has-feedback">
 							<input type="text" class="form-control" placeholder="Entité"
 								id="inputSuccess2" aria-describedby="inputSuccess2Status">
@@ -50,12 +47,12 @@
 								class="sr-only">(success)</span>
 						</div>
 					</div>
-					<div class=" col-md-3">
+					<div class="col-md-3">
 						<div class="form-group has-warning">
 							<input type="text" class="form-control" placeholder="Pièce">
 						</div>
 					</div>
-					<div class=" col-md-3">
+					<div class="col-md-3">
 						<div class="form-group has-error has-feedback">
 							<input type="text" class="form-control" placeholder="IOT"
 								id="inputError2" aria-describedby="inputError2Status"> <span
@@ -66,31 +63,29 @@
 					</div>
 				</form>
 			</div>
-			<h2 id="titre2">{{iotCtrl.iotSelect.id}}</h2>
+			<div id="rasp" ng-if="iotCtrl.iotSelect!=null">
+				<h2 id="titre2">
+					{{iotCtrl.iotSelect.id}}
+					<div ng-if="iotCtrl.iotSelect.statut=='rouge'"
+						class="statut statut-rouge"></div>
+					<div ng-if="iotCtrl.iotSelect.statut=='vert'"
+						class="statut statut-vert"></div>
+					<p id="entite">Entité</p>
+					<p id="piece">Pièce</p>
+				</h2>
+			</div>
 			<div class="row">
-				<div class="col-md-6" id="capteur"
+				<div class="col-md-6 capteur capteur-{{capteur.couleur}}"
 					ng-repeat="capteur in iotCtrl.iotSelect.capteurs">
-
+					<!-- 					{{capteur.couleur}} -->
 					<capteur capteur="capteur"></capteur>
 
 				</div>
 			</div>
-			<div class="container" id="meteo1">
-			<form class="row">
-				<h2 id="meteo2">Météo</h2>
-				<div class=" col-md-4">
-					<img id="soleil" alt="soleil" src="images/soleil.png">
-				</div>
-				<div class=" col-md-4">
-					<p id="meteo3">Ensoleillé</p>
-				</div>
-				<div class=" col-md-4">
-					<p id="tempterature">25°C</p>
-				</div>
-				</form>
-			</div>
-
+			</form>
 		</div>
+
+	</div>
 
 	</div>
 

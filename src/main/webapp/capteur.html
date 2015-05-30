@@ -1,23 +1,30 @@
 
 <div ng-controller="ChartCtrl as chartCtrl">
-	<h3>Capteur {{capteur.name}}</h3>
+	<h3>
+		Capteur {{capteur.name}}
+		<div ng-if="capteur.statut=='rouge'"
+			class="statut statut-rouge"></div>
+		<div ng-if="capteur.statut=='vert'"
+			class="statut statut-vert"></div>
+	</h3>
 	<div ng-if="chartCtrl.last.temp != null">
 		<h4>{{chartCtrl.last.temp/1000}}{{capteur.unite}}</h4>
 		<p>min:{{chartCtrl.min.temp/1000}}{{capteur.unite}}</p>
 		<p>max:{{chartCtrl.max.temp/1000}}{{capteur.unite}}</p>
-		
+
 	</div>
 	<!-- 	<section class="range-slider" max="chartCtrl.max" min="0" ng-model="chartCtrl.range" step="0.5" data-range-slider=""> -->
 	<highchart id="chart1" config="chartCtrl.config"></highchart>
-	
+
 	<div ng-if="chartCtrl.range != null">
-	
-	<section class="range-slider" data-range-slider
-			ng-model="chartCtrl.range" min="-10" max="40" change="chartCtrl.setPlot"></section>
-			
-	<p>ref-min:{{chartCtrl.range.from}}</p>
-	<p>ref-max:{{chartCtrl.range.to}}</p>			
-			
+
+		<section class="range-slider" data-range-slider
+			ng-model="chartCtrl.range" min="-10" max="40"
+			change="chartCtrl.setPlot"></section>
+
+		<p>Ref-Min = {{chartCtrl.range.from}}</p>
+		<p>Ref-Max = {{chartCtrl.range.to}}</p>
+
 	</div>
 
 </div>

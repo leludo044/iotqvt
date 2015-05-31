@@ -1,5 +1,9 @@
 package fr.iotqvt.master.modele;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import com.google.gson.Gson;
 
 public class Mesure implements Comparable<Mesure> {
@@ -40,6 +44,16 @@ public class Mesure implements Comparable<Mesure> {
 	public void setDate(long date) {
 		this.date = date;
 	}
+	
+	
+	public String getDateString(){
+		
+		return new SimpleDateFormat("yyyyMMddHHmmss").format(new Date(this.getDate()));
+	}
+	public void setDateString(String string) throws ParseException {
+		this.setDate(new SimpleDateFormat("yyyyMMddHHmmss").parse(string).getTime());
+		
+	}
 	@Override
 	public String toString() {
 		Gson gson = new Gson();
@@ -56,5 +70,7 @@ public class Mesure implements Comparable<Mesure> {
 		return 0;
 	    
 	}
+
+
 
 }

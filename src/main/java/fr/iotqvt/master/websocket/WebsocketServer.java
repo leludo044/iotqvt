@@ -13,7 +13,7 @@ import javax.websocket.server.ServerEndpoint;
 
 import com.google.gson.Gson;
 
-import fr.iotqvt.master.infra.MesureEntrepot;
+import fr.iotqvt.master.infra.DAOMesure;
 import fr.iotqvt.master.modele.Mesure;
 
 
@@ -45,7 +45,7 @@ public class WebsocketServer {
 			Gson gson = new Gson();
 			Mesure m = gson.fromJson(json, Mesure.class);
 			if(m.getCapteur() != null){
-				MesureEntrepot.ajouter(m);
+				DAOMesure.ajouter(m);
 				broadcastText(json);
 			}
 	

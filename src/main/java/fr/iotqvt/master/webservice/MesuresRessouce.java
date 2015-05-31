@@ -7,18 +7,20 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import fr.iotqvt.master.infra.MesureEntrepot;
+import fr.iotqvt.master.infra.DAOMesure;
 import fr.iotqvt.master.modele.Mesure;
 
-@Path("mesure")
-public class MesureRessouce {
+@Path("mesures")
+public class MesuresRessouce {
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Mesure> getMesures(){
-		MesureEntrepot.getAll();
+		DAOMesure.getAll();
 		
-		return MesureEntrepot.getAll();
+		return DAOMesure.getAll();
 		
 	}
+	
+
 }

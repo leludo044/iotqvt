@@ -5,7 +5,7 @@ iotqvt.factory('WebServiceFactory', ['$q', '$rootScope', '_', '$timeout', '$http
     var Service = {};
 
     var url = "http://" + document.location.hostname + ":" + document.location.port
-    		+ document.location.pathname + "webservice/mesure";
+    		+ document.location.pathname + "webservice/mesures";
 	
 
     

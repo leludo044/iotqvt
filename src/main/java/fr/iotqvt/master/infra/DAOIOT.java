@@ -23,7 +23,7 @@ public class DAOIOT {
 		Jedis jedis = JedisFactory.getInstance();
 		Set<String> keys = jedis.keys("iot:*");
 		for (String key : keys) {
-			set.add(key.substring(5, key.indexOf(":capteur")));
+			set.add(key.substring(4, key.indexOf(":capteur")));
 		}
 		for(String key : set){
 			IOT iot = new IOT();

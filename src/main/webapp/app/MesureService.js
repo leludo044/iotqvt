@@ -1,10 +1,12 @@
 'use strict';
 
-iotqvt.service('MesureService',
+iotqvt.service('MesureService', 
 		function(WebSocketService, WebServiceFactory, _) {
 
 			var mesures = [];
 			var chartData = [];
+            var chartDataMap = new Map() ;
+            var charDataObject = {};
 			var last = {
 				valeur : null,
 				date : null
@@ -21,6 +23,7 @@ iotqvt.service('MesureService',
 				valeur : null,
 				date : null
 			};
+            
 			WebServiceFactory.onReceiveData(function(data) {
 				var x;
 				for (x in data) {
@@ -46,6 +49,27 @@ iotqvt.service('MesureService',
 			WebSocketService.onReceiveData(function(data) {
 				mesures.push(data);
 				chartData.push([ data.date, data.valeur ]);
+                
+
+                // Tentative de dispacth des mesures dans les différents capteurs
+                var key = data.capteur.iot+':'+data.capteur.id ;
+                if (!chartDataMap.has(key)) {
+                    chartDataMap.set(key, new Array());
+                }
+                
+                chartDataMap.get(key).push([ data.date, data.valeur ]);
+//                console.log(chartDataMap.size) ;
+//                console.log(key+' |' +chartDataMap.get(key));
+//                console.log(chartData) ;
+
+                var key2 =data.capteur.iot.concat(data.capteur.id) ;
+                if (charDataObject[key2] === undefined )
+                {
+                    charDataObject[key2] = [] ;
+                }
+                charDataObject[key2].push([ data.date, data.valeur ]);
+                // Fin de la tentative de dispatch
+                
 				_.assign(last, _.max(mesures, function(mesure) {
 					return mesure.date;
 				}));
@@ -63,6 +87,7 @@ iotqvt.service('MesureService',
 			return {
 				mesures : mesures,
 				chartData : chartData,
+				chartDataMap : chartDataMap,
 				last : last,
 				first : first,
 				min : min,

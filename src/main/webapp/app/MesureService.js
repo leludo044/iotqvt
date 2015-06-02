@@ -5,8 +5,7 @@ iotqvt.service('MesureService',
 
 			var mesures = [];
 			var chartData = [];
-            var chartDataMap = new Map() ;
-            var charDataObject = {};
+            var capteurData = {};
 			var last = {
 				valeur : null,
 				date : null
@@ -51,28 +50,23 @@ iotqvt.service('MesureService',
 				chartData.push([ data.date, data.valeur ]);
                 
 
-                // Tentative de dispacth des mesures dans les différents capteurs
-                var key = data.capteur.iot+':'+data.capteur.id ;
-                if (!chartDataMap.has(key)) {
-                    chartDataMap.set(key, new Array());
-                }
+                // Répartition des mesures dans les différents capteurs
+                var key =data.capteur.iot.concat(data.capteur.id) ;                
                 
-                chartDataMap.get(key).push([ data.date, data.valeur ]);
-//                console.log(chartDataMap.size) ;
-//                console.log(key+' |' +chartDataMap.get(key));
-//                console.log(chartData) ;
-
-                var key2 =data.capteur.iot.concat(data.capteur.id) ;
-                if (charDataObject[key2] === undefined )
-                {
-                    charDataObject[key2] = [] ;
-                }
-                charDataObject[key2].push([ data.date, data.valeur ]);
-                // Fin de la tentative de dispatch
+                capteurData[key].mesures.push([ data.date, data.valeur ]);
+                capteurData[key].last = {
+                		valeur : data.valeur,
+                		date : data.date
+                } ;
+                console.log(key, capteurData[key].mesures);
+                console.log(chartData);
                 
-				_.assign(last, _.max(mesures, function(mesure) {
-					return mesure.date;
-				}));
+                // Valorisation des infos annexes
+                _.assign(last, chartDataObject[key].last) ;
+                                
+//				_.assign(last, _.max(mesures, function(mesure) {
+//					return mesure.date;
+//				}));
 				_.assign(first, _.min(mesures, function(mesure) {
 					return mesure.date;
 				}));
@@ -84,13 +78,28 @@ iotqvt.service('MesureService',
 				}));
 
 			});
+
+			/*
+			 * Enregistrement d'un jeu de mesures pour un capteur.
+			 * Permet d'initialiser l'objet avant de le fournir au graphe
+			 */
+			var register = function(idCapteur) {
+				capteurData[idCapteur] = {
+						mesures: [],
+						last : {
+							valeur : 0
+						}
+				};
+			};
+			
 			return {
 				mesures : mesures,
 				chartData : chartData,
-				chartDataMap : chartDataMap,
+				capteurData : capteurData,
 				last : last,
 				first : first,
 				min : min,
-				max : max
+				max : max,
+				register : register
 			};
 		});

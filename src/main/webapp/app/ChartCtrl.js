@@ -36,10 +36,18 @@ iotqvt.controller('ChartCtrl', [
 				}
 			});
 
-			this.last = MesureService.last;
+			this.capteur = $scope.capteur;
+			// Construction de la clé d'identification du capteur (id de l'iot + id du capteur)
+			this.idCapteur  = this.capteur.iot.concat(this.capteur.id) ;
+
+			// Enregistrement de ce capteur pour permettre la constitution d'un jeu de mesures
+			MesureService.register(this.idCapteur);
+
+			this.last = MesureService.capteurData[this.idCapteur].last;
+//			this.last = MesureService.last;
 			this.max = MesureService.max;
 			this.min = MesureService.min;
-			this.capteur = $scope.capteur;
+			
 			var plotLines = [];
 			this.range = {
 				from : 0,
@@ -122,7 +130,7 @@ iotqvt.controller('ChartCtrl', [
 
 				series : [ {
 					name : "Test",
-					data : MesureService.chartData,
+					data : MesureService.capteurData[this.idCapteur].mesures,
 					color:"#00004A"
 				}
 

@@ -65,4 +65,25 @@ public class Capteur {
 		this.iot = iot;
 	}
 
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Capteur [id=");
+		builder.append(id);
+		builder.append(", typeCapteur=");
+		builder.append(typeCapteur);
+		builder.append(", frequenceMesures=");
+		builder.append(frequenceMesures);
+		builder.append(", modele=");
+		builder.append(modele);
+		builder.append(", refMin=");
+		builder.append(refMin);
+		builder.append(", refMax=");
+		builder.append(refMax);
+		builder.append(", iot=");
+		builder.append(iot);
+		builder.append("]");
+		return builder.toString();
+	}
+
 }

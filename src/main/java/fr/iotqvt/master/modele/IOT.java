@@ -34,4 +34,16 @@ public class IOT {
 //	}
 //	
 	
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("IOT [id=");
+		builder.append(id);
+		builder.append(", capteurs=");
+		builder.append(capteurs);
+		builder.append(", master=");
+		builder.append(master);
+		builder.append("]");
+		return builder.toString();
+	}
 }

@@ -16,11 +16,12 @@ public class DAOCapteur {
 		Jedis jedis = JedisFactory.getInstance();
 		Set<String> keys = jedis.keys("iot:"+iot+":capteur:*");
 		for (String key : keys) {
-			set.add(key.substring(key.indexOf(":capteur")+8, key.indexOf(":mesure")));
+			set.add(key.substring(key.indexOf(":capteur")+9, key.indexOf(":mesure")));
 		}
 		for(String key : set){
 			Capteur capteur = new Capteur();
 			capteur.setId(key);
+			capteur.setIot(iot);
 			resultat.add(capteur);
 		}
 	

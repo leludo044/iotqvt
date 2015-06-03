@@ -62,7 +62,7 @@ iotqvt.service('MesureService',
                 console.log(chartData);
                 
                 // Valorisation des infos annexes
-                _.assign(last, chartDataObject[key].last) ;
+                _.assign(last, capteurData[key].last) ;
                                 
 //				_.assign(last, _.max(mesures, function(mesure) {
 //					return mesure.date;

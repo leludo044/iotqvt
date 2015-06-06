@@ -23,11 +23,16 @@ public class DataSourceFactory {
 			}
 		}
 //
-//		String username = dbUri.getUserInfo().split(":")[0] ;
-//		String password = dbUri.getUserInfo().split(":")[1] ;
+		String username = dbUri.getUserInfo().split(":")[0] ;
+		String password = dbUri.getUserInfo().split(":")[1] ;
 		
 		MysqlDataSource	mysqlDS = new MysqlDataSource();
-		mysqlDS.setUrl(dbUri.toString());
+		mysqlDS.setUrl(dbUri.getHost());
+		mysqlDS.setPort(3306);
+		mysqlDS.setUser(username);
+		mysqlDS.setPassword(password);
+		mysqlDS.setAutoReconnect(true);
+		mysqlDS.setDatabaseName(dbUri.getPath());
         return mysqlDS;
     }
      

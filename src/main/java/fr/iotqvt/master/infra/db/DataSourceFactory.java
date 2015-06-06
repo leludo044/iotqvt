@@ -14,7 +14,7 @@ public class DataSourceFactory {
 		try {
 			dbUri = new URI(System.getenv("CLEARDB_DATABASE_URL"));
 			
-		} catch (URISyntaxException e) {
+		} catch (Exception e) {
 			 try {
 				dbUri = new URI("mysql://bf7596b269ec35:96131fcf@eu-cdbr-west-01.cleardb.com/heroku_32cfb72abf5da72?reconnect=true");
 			} catch (URISyntaxException e1) {
@@ -27,6 +27,7 @@ public class DataSourceFactory {
 		String password = dbUri.getUserInfo().split(":")[1] ;
 		
 		MysqlDataSource	mysqlDS = new MysqlDataSource();
+		
 		mysqlDS.setUrl(dbUri.getHost());
 		mysqlDS.setPort(3306);
 		mysqlDS.setUser(username);

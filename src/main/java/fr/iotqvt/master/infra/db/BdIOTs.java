@@ -12,7 +12,7 @@ import com.jcabi.jdbc.SingleOutcome;
 
 @Immutable
 public class BdIOTs implements IOTs {
-	  private final DataSource dbase;
+	  private  DataSource dbase;
 	  public BdIOTs(DataSource data) {
 	    this.dbase =  data;
 	  }

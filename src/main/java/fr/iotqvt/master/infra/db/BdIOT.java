@@ -11,8 +11,8 @@ import com.jcabi.jdbc.SingleOutcome;
 
 
 	@Immutable
-	final public class BdIOT implements IOT {
-	  private final DataSource dbase;
+	 public class BdIOT implements IOT {
+	  private  DataSource dbase;
 	  private String id;
 	  public BdIOT(DataSource data, String id) {
 	    this.dbase = data;

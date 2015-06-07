@@ -30,7 +30,7 @@ public class Test {
 			
 			Collection<IOT> iots = dao.getAll();
 			for(IOT iot : iots){
-				System.out.println(iot.getId());		
+				System.out.println(iot);		
 				}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

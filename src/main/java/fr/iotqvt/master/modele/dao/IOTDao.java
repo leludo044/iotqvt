@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.sql.Types;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import fr.iotqvt.master.modele.jdbc.Jdbc;
 import fr.iotqvt.master.modele.metier.Capteur;
@@ -72,12 +73,13 @@ public class IOTDao implements DaoInterface<IOT, String> {
 		return 0;
 	}
 
-	private IOT chargerUnEnregistrement(ResultSet rs) {
+	private IOT chargerUnEnregistrement(ResultSet rs) throws Exception {
 		IOT iot = new IOT();
+		CapteurDAO dao = new CapteurDAO();
 		try {
 
 			iot.setId(rs.getString("id"));
-			iot.setCapteurs(new ArrayList<Capteur>());
+			iot.setCapteurs((List<Capteur>)dao.getByIOT(iot.getId()));
 		} catch (SQLException ex) {
 			ex.printStackTrace();
 		}

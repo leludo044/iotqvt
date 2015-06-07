@@ -1,6 +1,7 @@
 package fr.iotqvt.master.websocket;
 
 
+import java.sql.SQLException;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
 
@@ -16,6 +17,7 @@ import com.google.gson.Gson;
 import fr.iotqvt.master.modele.dao.CapteurDAO;
 import fr.iotqvt.master.modele.dao.IOTDAO;
 import fr.iotqvt.master.modele.dao.MesureDAO;
+import fr.iotqvt.master.modele.jdbc.Jdbc;
 import fr.iotqvt.master.modele.metier.IOT;
 import fr.iotqvt.master.modele.metier.Mesure;
 
@@ -48,6 +50,12 @@ public class WebsocketServer {
 			Gson gson = new Gson();
 			Mesure m = gson.fromJson(json, Mesure.class);
 			if(m.getCapteur() != null){
+				 try {
+						Jdbc.getInstance().connecter();
+					} catch (ClassNotFoundException | SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 				IOTDAO iotDao = new IOTDAO();
 				CapteurDAO capteurDao = new CapteurDAO();
 				MesureDAO mesuredao = new MesureDAO();
@@ -55,6 +63,12 @@ public class WebsocketServer {
 				capteurDao.create(m.getCapteur());
 				mesuredao.create(m);
 				broadcastText(json);
+				 try {
+						Jdbc.getInstance().deconnecter();
+					} catch ( SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 			}
 	
 		

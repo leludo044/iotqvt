@@ -18,7 +18,7 @@ iotqvt.service('IOTService', ['$http',
 					var y;
 					for(y in data[x].capteurs){
 					data[x].capteurs[y].couleur = "bleu";
-					data[x].capteurs[y].iot = data[x].id;
+//					data[x].capteurs[y].iot = data[x].id;
 					}
 					iots.push(data[x]);
 				}

@@ -17,18 +17,25 @@ public class IOTDao implements DaoInterface<IOT, String> {
 
 	@Override
 	public int create(IOT iot) throws Exception {
-
-        String requete = "INSERT INTO iot (id,  Piece_id) VALUES (?, ?)";
+		int num= 0;
+        String requete = "INSERT  IGNORE INTO iot (id,  Piece_id) VALUES (?, ?)";
         try {
             PreparedStatement ps = Jdbc.getInstance().getConnexion().prepareStatement(requete);
 
             ps.setString(1, iot.getId());
             ps.setNull(2, Types.VARCHAR);
-            ps.executeUpdate();
-            return 1;
+            num =  ps.executeUpdate();
+            if(num>0){
+            	CapteurDAO capteurDAO = new CapteurDAO();
+            	for(Capteur capteur : iot.getCapteurs()){
+            		capteur.setIot(iot.getId());
+                	capteurDAO.create(capteur);
+            	}
+            }
+            return num;
         } catch (SQLException ex) {
             ex.printStackTrace();
-            return 0;
+            return num;
             
         }
       

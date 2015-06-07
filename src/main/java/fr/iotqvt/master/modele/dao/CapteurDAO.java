@@ -3,21 +3,36 @@ package fr.iotqvt.master.modele.dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.Collection;
 
 import fr.iotqvt.master.modele.jdbc.Jdbc;
 import fr.iotqvt.master.modele.metier.Capteur;
-import fr.iotqvt.master.modele.metier.IOT;
 
 public class CapteurDAO implements DaoInterface<Capteur, String> {
 
 
 
 	@Override
-	public int create(Capteur objetMetier) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+	public int create(Capteur capteur) throws Exception {
+		int num= 0;
+        String requete = "INSERT INTO capteur (id, typecapteur_id, iot_id) VALUES (?, ?,?)";
+        try {
+            PreparedStatement ps = Jdbc.getInstance().getConnexion().prepareStatement(requete);
+
+            ps.setString(1, capteur.getId());
+            ps.setNull(2, Types.INTEGER);
+            ps.setString(3, capteur.getIot());
+            num =  ps.executeUpdate();
+
+            return num;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return num;
+            
+        }
+      
 	}
 
 	@Override
@@ -69,7 +84,7 @@ public class CapteurDAO implements DaoInterface<Capteur, String> {
 		try {
 
 			capteur.setId(rs.getString("id"));
-
+			capteur.setIot(rs.getString("iot_id"));
 		} catch (SQLException ex) {
 			ex.printStackTrace();
 		}

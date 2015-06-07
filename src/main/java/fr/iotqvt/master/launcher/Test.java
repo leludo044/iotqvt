@@ -1,11 +1,13 @@
 package fr.iotqvt.master.launcher;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Collection;
 
 import fr.iotqvt.master.modele.dao.IOTDao;
 import fr.iotqvt.master.modele.jdbc.Jdbc;
 import fr.iotqvt.master.modele.jdbc.JdbcFactory;
+import fr.iotqvt.master.modele.metier.Capteur;
 import fr.iotqvt.master.modele.metier.IOT;
 
 
@@ -25,7 +27,12 @@ public class Test {
 		
 		try {
 			IOT iot1 = new IOT();
-			iot1.setId("rasp-test");
+			ArrayList<Capteur> capteurs = new ArrayList<Capteur>();
+			Capteur cap = new Capteur();
+			cap.setId("03");
+			capteurs.add(cap);
+			iot1.setId("rasp-test4");
+			iot1.setCapteurs(capteurs);
 			dao.create(iot1);
 			
 			Collection<IOT> iots = dao.getAll();

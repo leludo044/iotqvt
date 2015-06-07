@@ -14,12 +14,13 @@
 <link rel="stylesheet" href="./style.css">
 </head>
 <body>
+<div class="container">
 	<div ng-app="iotqvt">
-		<nav class="navbar navbar-inverse navbar-fixed-top">
-			<div class="container" id="menu">
+		<nav class="navbar navbar-inverse">
+			<div id="menu">
 				<img id="profil" src="images/avatar2.jpg" alt="profil"
 					class="img-circle"> 
-				<a id="nom1" href="#" class="navbar-link">Prénom NOM </a>
+				<a id="nom1" href="#" class="navbar-link">Pseudo </a>
 				<button id="parametre" type="button"
 					class="btn btn-default navbar-btn">
 					<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
@@ -30,9 +31,9 @@
 				</button>
 			</div>
 		</nav>
-		<div class="container" ng-controller="IOTCtrl as iotCtrl">
+		<div ng-controller="IOTCtrl as iotCtrl">
 			<h1>Qualité de vie au travail et facteurs environnementaux</h1>
-			<div class="container" id="rechercher">
+			<div>
 				<form class="row">
 					<div class="col-md-3">
 						<select class="form-control" ng-model="iotCtrl.iotSelect"
@@ -63,6 +64,7 @@
 					</div>
 				</form>
 			</div>
+			<!--
 			<div id="rasp" ng-if="iotCtrl.iotSelect!=null">
 				<h2 id="titre2">
 					{{iotCtrl.iotSelect.id}}
@@ -74,6 +76,7 @@
 					<p id="piece">Pièce</p>
 				</h2>
 			</div>
+			-->
 			<div class="row">
 				<div class="col-md-6 capteur capteur-{{capteur.couleur}}"
 					ng-repeat="capteur in iotCtrl.iotSelect.capteurs">
@@ -88,7 +91,7 @@
 	</div>
 
 	</div>
-
+</div>
 	<script type="text/javascript" src="./lib/jquery/jquery-2.1.3.js"></script>
 	<script type="text/javascript" src="./lib/angular/angular.js"></script>
 	<script src="./lib/bootstrap-3.3.4-dist/js/bootstrap.min.js"></script>

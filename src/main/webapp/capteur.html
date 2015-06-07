@@ -1,16 +1,14 @@
 
 <div ng-controller="ChartCtrl as chartCtrl">
 	<h3>
-		Capteur {{capteur.id}}
+		Capteur {{capteur.id}} - {{capteur.typeCapteur.libelle}}
 		<div ng-if="capteur.statut=='rouge'"
 			class="statut statut-rouge"></div>
 		<div ng-if="capteur.statut=='vert'"
 			class="statut statut-vert"></div>
 	</h3>
 		<div >
-		<h4 class="titre3">{{chartCtrl.last.valeur}} {{capteur.unite}}</h4>
-		<p class="min">Min = {{chartCtrl.min.valeur}} {{capteur.unite}}</p>
-		<p class="max">Max = {{chartCtrl.max.valeur}} {{capteur.unite}}</p>
+		<h4>{{chartCtrl.min.valeur}} {{capteur.unite}} / {{chartCtrl.last.valeur}} {{capteur.unite}} / {{chartCtrl.max.valeur}} {{capteur.unite}}</h4>
 
 	</div>
 	<!-- 	<section class="range-slider" max="chartCtrl.max" min="0" ng-model="chartCtrl.range" step="0.5" data-range-slider=""> -->

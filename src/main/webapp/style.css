@@ -3,3 +3,11 @@
   font-weight: inherit;
   margin: inherit;
 }
+.blue{
+/* 	background: #84ffff none repeat scroll 0 0; */
+	background-color: #70DAE8;
+}
+
+.red{
+	background: #ff8a80 none repeat scroll 0 0;
+}

@@ -9,12 +9,15 @@ import org.apache.catalina.Context;
 import org.apache.catalina.LifecycleException;
 import org.apache.catalina.startup.Tomcat;
 
+import fr.iotqvt.master.modele.jdbc.JdbcFactory;
+
 public class Main {
 
 	public static void main(String[] args) throws ServletException, LifecycleException, MalformedURLException {
+	    JdbcFactory.creer();
 		String webappDirLocation = "src/main/webapp/";
         Tomcat tomcat = new Tomcat();
-
+  
         //The port that we should run on can be set into an environment variable
         //Look for that variable and default to 8080 if it isn't there.
         String webPort = System.getenv("PORT");
@@ -29,6 +32,8 @@ public class Main {
         File configFile = new File(webappDirLocation + "WEB-INF/web.xml");
         context.setConfigFile(configFile.toURI().toURL());
         tomcat.start();
-        tomcat.getServer().await();	}
+        tomcat.getServer().await();
+
+        }
 
 }

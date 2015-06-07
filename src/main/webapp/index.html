@@ -23,15 +23,32 @@
 			ng-repeat="iot in iotCtrl.iots">{{iot.id}}</md-option> </md-select> </md-sidenav>
 
 
-		<div layout="row" flex layout-margin>
+<!-- 		<div layout="row" flex layout-margin> -->
 
-			<md-card class="blue " flex
-				ng-repeat="capteur in iotCtrl.iotSelect.capteurs">
-				{{capteur}}
-				<capteur
+<!-- 			<md-card class="blue " flex -->
+<!-- 				ng-repeat="capteur in iotCtrl.iotSelect.capteurs"> -->
+	
+<!-- 				<capteur -->
+<!-- 				capteur="capteur"></capteur></md-card> -->
+<!-- </div> -->
+<md-content layout-padding>
+    <md-grid-list
+        md-cols-gt-md="12" md-cols-sm="3" md-cols-md="8"
+        md-row-height-gt-md="1:1" md-row-height="4:3"
+        md-gutter-gt-md="16px" md-gutter-gt-sm="8px" md-gutter="4px">
+      <md-grid-tile
+          	ng-repeat="capteur in iotCtrl.iotSelect.capteurs"
+          ng-style="{
+            'background': tile.color
+          }"
+          md-colspan-gt-sm="10" 
+          md-rowspan-gt-sm="10">
+          <capteur
 				capteur="capteur"></capteur></md-card>
-
-		</div>
+      </md-grid-tile>
+    </md-grid-list>
+  </md-content>
+		
 
 
 		<!-- Angular Material Dependencies -->

@@ -26,26 +26,30 @@ iotqvt.service('MesureService',
 			WebServiceFactory.onReceiveData(function(data) {
 				var x;
 				for (x in data) {
-					mesures.push(data[x]);
-					chartData.push([ data[x].date, data[x].valeur ]);
+//					mesures.push(data[x]);
+//					chartData.push([ data[x].date, data[x].valeur ]);
+					pushData(data[x]);
 				}
 
-				_.assign(last, _.max(mesures, function(mesure) {
-					return mesure.date;
-				}));
-				_.assign(first, _.min(mesures, function(mesure) {
-					return mesure.date;
-				}));
-				_.assign(max, _.max(mesures, function(mesure) {
-					return mesure.valeur;
-				}));
-				_.assign(min, _.min(mesures, function(mesure) {
-					return mesure.valeur;
-				}));
+//				_.assign(last, _.max(mesures, function(mesure) {
+//					return mesure.date;
+//				}));
+//				_.assign(first, _.min(mesures, function(mesure) {
+//					return mesure.date;
+//				}));
+//				_.assign(max, _.max(mesures, function(mesure) {
+//					return mesure.valeur;
+//				}));
+//				_.assign(min, _.min(mesures, function(mesure) {
+//					return mesure.valeur;
+//				}));
 
 			});
 
 			WebSocketService.onReceiveData(function(data) {
+				pushData(data);
+			});
+			function pushData(data){
 				mesures.push(data);
 				chartData.push([ data.date, data.valeur ]);
 
@@ -76,8 +80,9 @@ iotqvt.service('MesureService',
 						date : data.date
 					});
 				}
-			});
-
+			}
+			
+			
 			/*
 			 * Enregistrement et initialisation d'un réceptacle de mesures pour un capteur.
 			 */

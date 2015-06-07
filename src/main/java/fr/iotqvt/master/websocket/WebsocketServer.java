@@ -1,6 +1,7 @@
 package fr.iotqvt.master.websocket;
 
 
+import java.sql.SQLException;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
 
@@ -13,8 +14,12 @@ import javax.websocket.server.ServerEndpoint;
 
 import com.google.gson.Gson;
 
-import fr.iotqvt.master.infra.DAOMesure;
-import fr.iotqvt.master.modele.Mesure;
+import fr.iotqvt.master.modele.dao.CapteurDAO;
+import fr.iotqvt.master.modele.dao.IOTDAO;
+import fr.iotqvt.master.modele.dao.MesureDAO;
+import fr.iotqvt.master.modele.jdbc.Jdbc;
+import fr.iotqvt.master.modele.metier.IOT;
+import fr.iotqvt.master.modele.metier.Mesure;
 
 
 @ServerEndpoint(value = "/websocket/mesure")
@@ -45,8 +50,25 @@ public class WebsocketServer {
 			Gson gson = new Gson();
 			Mesure m = gson.fromJson(json, Mesure.class);
 			if(m.getCapteur() != null){
-				DAOMesure.ajouter(m);
+				 try {
+						Jdbc.getInstance().connecter();
+					} catch (ClassNotFoundException | SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				IOTDAO iotDao = new IOTDAO();
+				CapteurDAO capteurDao = new CapteurDAO();
+				MesureDAO mesuredao = new MesureDAO();
+				iotDao.create(new IOT(m.getCapteur().getIot()));
+				capteurDao.create(m.getCapteur());
+				mesuredao.create(m);
 				broadcastText(json);
+				 try {
+						Jdbc.getInstance().deconnecter();
+					} catch ( SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 			}
 	
 		

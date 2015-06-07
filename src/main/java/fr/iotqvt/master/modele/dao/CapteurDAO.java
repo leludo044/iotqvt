@@ -17,7 +17,7 @@ public class CapteurDAO implements DaoInterface<Capteur, String> {
 	@Override
 	public int create(Capteur capteur) throws Exception {
 		int num= 0;
-        String requete = "INSERT INTO capteur (id, typecapteur_id, iot_id) VALUES (?, ?,?)";
+        String requete = "INSERT IGNORE INTO capteur (id, typecapteur_id, iot_id) VALUES (?, ?,?)";
         try {
             PreparedStatement ps = Jdbc.getInstance().getConnexion().prepareStatement(requete);
 

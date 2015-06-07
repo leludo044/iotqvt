@@ -9,6 +9,9 @@ import org.apache.catalina.Context;
 import org.apache.catalina.LifecycleException;
 import org.apache.catalina.startup.Tomcat;
 
+import fr.iotqvt.master.modele.jdbc.Jdbc;
+import fr.iotqvt.master.modele.jdbc.JdbcFactory;
+
 public class Main {
 
 	public static void main(String[] args) throws ServletException, LifecycleException, MalformedURLException {
@@ -29,6 +32,8 @@ public class Main {
         File configFile = new File(webappDirLocation + "WEB-INF/web.xml");
         context.setConfigFile(configFile.toURI().toURL());
         tomcat.start();
-        tomcat.getServer().await();	}
+        tomcat.getServer().await();
+
+        }
 
 }

@@ -1,17 +1,41 @@
 package fr.iotqvt.master.launcher;
 
-import fr.iotqvt.master.infra.db.BdIOTs;
-import fr.iotqvt.master.infra.db.DataSourceFactory;
-import fr.iotqvt.master.infra.db.IOT;
-import fr.iotqvt.master.infra.db.IOTs;
+import java.sql.SQLException;
+import java.util.Collection;
+
+import fr.iotqvt.master.modele.dao.IOTDao;
+import fr.iotqvt.master.modele.jdbc.Jdbc;
+import fr.iotqvt.master.modele.jdbc.JdbcFactory;
+import fr.iotqvt.master.modele.metier.IOT;
+
 
 public class Test {
 
 	public static void main(String[] args) {
-		System.out.println("test");
-		IOTs iots = new BdIOTs(DataSourceFactory.getMySQLDataSource());
-		for (IOT iot : iots.iterate()){
-		  System.out.println("id: " + iot.id());
+		 JdbcFactory.creer();
+		 try {
+			Jdbc.getInstance().connecter();
+		} catch (ClassNotFoundException | SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
+		 
+		 
+		IOTDao dao = new IOTDao();
+		
+		try {
+			IOT iot1 = new IOT();
+			iot1.setId("rasp-test");
+			dao.create(iot1);
+			
+			Collection<IOT> iots = dao.getAll();
+			for(IOT iot : iots){
+				System.out.println(iot.getId());		
+				}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 
 	}
 }

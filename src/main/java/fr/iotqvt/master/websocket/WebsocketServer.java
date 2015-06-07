@@ -13,6 +13,10 @@ import javax.websocket.server.ServerEndpoint;
 
 import com.google.gson.Gson;
 
+import fr.iotqvt.master.modele.dao.CapteurDAO;
+import fr.iotqvt.master.modele.dao.IOTDAO;
+import fr.iotqvt.master.modele.dao.MesureDAO;
+import fr.iotqvt.master.modele.metier.IOT;
 import fr.iotqvt.master.modele.metier.Mesure;
 
 
@@ -44,7 +48,12 @@ public class WebsocketServer {
 			Gson gson = new Gson();
 			Mesure m = gson.fromJson(json, Mesure.class);
 			if(m.getCapteur() != null){
-			
+				IOTDAO iotDao = new IOTDAO();
+				CapteurDAO capteurDao = new CapteurDAO();
+				MesureDAO mesuredao = new MesureDAO();
+				iotDao.create(new IOT(m.getCapteur().getIot()));
+				capteurDao.create(m.getCapteur());
+				mesuredao.create(m);
 				broadcastText(json);
 			}
 	

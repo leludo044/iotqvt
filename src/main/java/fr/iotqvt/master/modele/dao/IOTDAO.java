@@ -12,7 +12,7 @@ import fr.iotqvt.master.modele.jdbc.Jdbc;
 import fr.iotqvt.master.modele.metier.Capteur;
 import fr.iotqvt.master.modele.metier.IOT;
 
-public class IOTDao implements DaoInterface<IOT, String> {
+public class IOTDAO implements DaoInterface<IOT, String> {
 
 
 	@Override

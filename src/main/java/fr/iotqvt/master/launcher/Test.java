@@ -4,7 +4,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import fr.iotqvt.master.modele.dao.IOTDao;
+import fr.iotqvt.master.modele.dao.IOTDAO;
 import fr.iotqvt.master.modele.jdbc.Jdbc;
 import fr.iotqvt.master.modele.jdbc.JdbcFactory;
 import fr.iotqvt.master.modele.metier.Capteur;
@@ -23,7 +23,7 @@ public class Test {
 		}
 		 
 		 
-		IOTDao dao = new IOTDao();
+		IOTDAO dao = new IOTDAO();
 		
 		try {
 			IOT iot1 = new IOT();

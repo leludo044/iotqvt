@@ -12,7 +12,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import fr.iotqvt.master.modele.dao.IOTDao;
+import fr.iotqvt.master.modele.dao.IOTDAO;
 import fr.iotqvt.master.modele.jdbc.Jdbc;
 import fr.iotqvt.master.modele.metier.IOT;
 
@@ -32,7 +32,7 @@ public class IOTRessouce {
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<IOT> getIOTs() {
 		
-		IOTDao dao = new IOTDao();
+		IOTDAO dao = new IOTDAO();
 		Collection<IOT> iots = null;
 		try {
 			iots = dao.getAll();

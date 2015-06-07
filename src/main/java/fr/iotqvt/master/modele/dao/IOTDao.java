@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import fr.iotqvt.master.modele.jdbc.Jdbc;
+import fr.iotqvt.master.modele.metier.Capteur;
 import fr.iotqvt.master.modele.metier.IOT;
 
 public class IOTDao implements DaoInterface<IOT, String> {
@@ -76,7 +77,7 @@ public class IOTDao implements DaoInterface<IOT, String> {
 		try {
 
 			iot.setId(rs.getString("id"));
-
+			iot.setCapteurs(new ArrayList<Capteur>());
 		} catch (SQLException ex) {
 			ex.printStackTrace();
 		}

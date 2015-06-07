@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -17,15 +19,19 @@ import fr.iotqvt.master.modele.metier.IOT;
 @Path("iot")
 public class IOTRessouce {
 
+	@PostConstruct
+	public void init(){
+		 try {
+				Jdbc.getInstance().connecter();
+			} catch (ClassNotFoundException | SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+	}
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<IOT> getIOTs() {
-		 try {
-			Jdbc.getInstance().connecter();
-		} catch (ClassNotFoundException | SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+		
 		IOTDao dao = new IOTDao();
 		Collection<IOT> iots = null;
 		try {
@@ -35,10 +41,19 @@ public class IOTRessouce {
 			e.printStackTrace();
 		}
 		if (iots instanceof List){
-			 return  (List)iots;
+			 return  (List<IOT>)iots;
 		}else{
-			return  new ArrayList(iots);
+			return  new ArrayList<IOT>(iots);
 		}
 	
+	}
+	@PreDestroy
+	public void detroy(){
+		 try {
+				Jdbc.getInstance().deconnecter();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 	}
 }

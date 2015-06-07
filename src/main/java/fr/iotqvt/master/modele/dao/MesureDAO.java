@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import fr.iotqvt.master.modele.jdbc.Jdbc;
+import fr.iotqvt.master.modele.metier.Capteur;
 import fr.iotqvt.master.modele.metier.Mesure;
 
 public class MesureDAO implements DaoInterface<Mesure, String> {
@@ -47,8 +48,24 @@ public class MesureDAO implements DaoInterface<Mesure, String> {
 
 	@Override
 	public Collection<Mesure> getAll() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Mesure> result = new ArrayList<Mesure>();
+		ResultSet rs;
+		// préparer la requête
+		String requete = "SELECT * FROM mesure  ";
+		try {
+			PreparedStatement ps = Jdbc.getInstance().getConnexion()
+					.prepareStatement(requete);
+
+			rs = ps.executeQuery();
+			// Charger les enregistrements dans la collection
+			while (rs.next()) {
+				Mesure mesure = chargerUnEnregistrement(rs);
+				result.add(mesure);
+			}
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
+		return result;
 	}
 
 	@Override
@@ -84,6 +101,10 @@ public class MesureDAO implements DaoInterface<Mesure, String> {
 		try {
 			mesure.setValeur(rs.getFloat("valeur"));
 			mesure.setDate(rs.getTimestamp("date").getTime());
+			Capteur capteur = new Capteur();
+			capteur.setId(rs.getString("capteur_id"));
+			capteur.setIot(rs.getString("capteur_iot_id"));
+			mesure.setCapteur(capteur);
 		} catch (SQLException ex) {
 			ex.printStackTrace();
 		}

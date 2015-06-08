@@ -52,7 +52,7 @@ public class CapteurDAO implements DaoInterface<Capteur, String> {
 		Capteur result = null;
 		ResultSet rs;
 		// préparer la requête
-		String requete = "SELECT * FROM capteur WHERE iot_id=? AND capteur_id=?";
+		String requete = "SELECT * FROM capteur WHERE iot_id=? AND id=?";
 		try {
 			PreparedStatement ps = Jdbc.getInstance().getConnexion()
 					.prepareStatement(requete);

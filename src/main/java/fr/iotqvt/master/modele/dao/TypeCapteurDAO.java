@@ -1,6 +1,7 @@
 package fr.iotqvt.master.modele.dao;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collection;
 
@@ -29,10 +30,27 @@ public class TypeCapteurDAO implements DaoInterface<TypeCapteur, String> {
 	}
 
 	@Override
-	public TypeCapteur getOne(String idMetier) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public TypeCapteur getOne(String libelle) throws Exception {
+		TypeCapteur result = null;
+		ResultSet rs;
+		// préparer la requête
+		String requete = "SELECT * FROM typecapteur WHERE libelle=? ";
+		try {
+			PreparedStatement ps = Jdbc.getInstance().getConnexion()
+					.prepareStatement(requete);
+			ps.setString(1,libelle);
+			rs = ps.executeQuery();
+			// Charger les enregistrements dans la collection
+			while (rs.next()) {
+				result = chargerUnEnregistrement(rs);
+			}
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
+		return result;
 	}
+
+
 
 	@Override
 	public Collection<TypeCapteur> getAll() throws Exception {
@@ -52,5 +70,16 @@ public class TypeCapteurDAO implements DaoInterface<TypeCapteur, String> {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	private TypeCapteur chargerUnEnregistrement(ResultSet rs) {
+		TypeCapteur type = new TypeCapteur();
+		try {
+			type.setLibelle(rs.getString("libelle"));
+			type.setUnite(rs.getString("unite"));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
+		return type;
+	}
 }

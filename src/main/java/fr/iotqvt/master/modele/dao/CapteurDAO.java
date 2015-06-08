@@ -28,7 +28,7 @@ public class CapteurDAO implements DaoInterface<Capteur, String> {
 
             ps.setString(1, capteur.getId());
             if(capteur.getTypeCapteur()!=null){
-            	ps.setString(1, capteur.getTypeCapteur().getLibelle());
+            	ps.setString(2, capteur.getTypeCapteur().getLibelle());
             }else{
             	  ps.setNull(2, Types.VARCHAR);
             }

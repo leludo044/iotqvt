@@ -16,16 +16,28 @@ public class CapteurDAO implements DaoInterface<Capteur, String> {
 
 	@Override
 	public int create(Capteur capteur) throws Exception {
+		if(capteur.getTypeCapteur()!=null){
+			TypeCapteurDAO typeCapteurDAO = new TypeCapteurDAO();
+			typeCapteurDAO.create(capteur.getTypeCapteur());
+		}
+		
 		int num= 0;
-        String requete = "INSERT IGNORE INTO capteur (id, typecapteur_id, iot_id) VALUES (?, ?,?)";
+        String requete = "INSERT IGNORE INTO capteur (id, typecapteur_libelle, iot_id) VALUES (?, ?,?)";
         try {
             PreparedStatement ps = Jdbc.getInstance().getConnexion().prepareStatement(requete);
 
             ps.setString(1, capteur.getId());
-            ps.setNull(2, Types.INTEGER);
+            if(capteur.getTypeCapteur()!=null){
+            	ps.setString(1, capteur.getTypeCapteur().getLibelle());
+            }else{
+            	  ps.setNull(2, Types.VARCHAR);
+            }
+          
             ps.setString(3, capteur.getIot());
             num =  ps.executeUpdate();
 
+            
+            
             return num;
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -80,13 +92,18 @@ public class CapteurDAO implements DaoInterface<Capteur, String> {
 		return result;
 	}
 	private Capteur chargerUnEnregistrement(ResultSet rs) {
+		TypeCapteurDAO typeCapteurDAO = new TypeCapteurDAO();
 		Capteur capteur = new Capteur();
 		try {
 
 			capteur.setId(rs.getString("id"));
 			capteur.setIot(rs.getString("iot_id"));
+			capteur.setTypeCapteur(typeCapteurDAO.getOne(rs.getString("typecapteur_libelle")));
+			
 		} catch (SQLException ex) {
 			ex.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		return capteur;
 	}

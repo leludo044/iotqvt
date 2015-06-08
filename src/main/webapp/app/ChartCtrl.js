@@ -106,7 +106,7 @@ iotqvt.controller('ChartCtrl', [
 				},
 				yAxis : {
 					title : {
-						text : this.capteur.name + ' ' + this.capteur.unite,
+						text : this.capteur.typecapteur.libelle + ' ' + this.capteur.typecapteur.unite,
 						style: { "color": "#00002E", "fontWeight": "bold" }
 					},
 					minRange : 10,
@@ -119,7 +119,7 @@ iotqvt.controller('ChartCtrl', [
 		            minorTickWidth: 1
 				},
 				tooltip : {
-					valueSuffix : this.capteur.unite
+					valueSuffix : this.capteur.typecapteur.unite
 				},
 				legend : {
 					enabled : false,

@@ -2,7 +2,6 @@ package fr.iotqvt.master.modele.dao;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Types;
 import java.util.Collection;
 
 import fr.iotqvt.master.modele.jdbc.Jdbc;

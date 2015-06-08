@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import fr.iotqvt.master.modele.jdbc.Jdbc;
-import fr.iotqvt.master.modele.metier.Capteur;
 import fr.iotqvt.master.modele.metier.Mesure;
 
 public class MesureDAO implements DaoInterface<Mesure, String> {
@@ -98,15 +97,19 @@ public class MesureDAO implements DaoInterface<Mesure, String> {
 	}
 	private Mesure chargerUnEnregistrement(ResultSet rs) {
 		Mesure mesure = new Mesure();
+		CapteurDAO capteurDAO = new CapteurDAO();
 		try {
 			mesure.setValeur(rs.getFloat("valeur"));
 			mesure.setDate(rs.getTimestamp("date").getTime());
-			Capteur capteur = new Capteur();
-			capteur.setId(rs.getString("capteur_id"));
-			capteur.setIot(rs.getString("capteur_iot_id"));
-			mesure.setCapteur(capteur);
+//			Capteur capteur = new Capteur();
+//			capteur.setId(rs.getString("capteur_id"));
+//			capteur.setIot(rs.getString("capteur_iot_id"));
+			mesure.setCapteur(capteurDAO.getOne(rs.getString("capteur_iot_id"), rs.getString("capteur_id")));
 		} catch (SQLException ex) {
 			ex.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		return mesure;
 	}

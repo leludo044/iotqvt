@@ -47,10 +47,26 @@ public class CapteurDAO implements DaoInterface<Capteur, String> {
       
 	}
 
-	@Override
-	public Capteur getOne(String idMetier) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+//	@Override
+	public Capteur getOne(String iot_id, String capteur_id) throws Exception {
+		Capteur result = null;
+		ResultSet rs;
+		// préparer la requête
+		String requete = "SELECT * FROM capteur WHERE iot_id=? AND capteur_id=?";
+		try {
+			PreparedStatement ps = Jdbc.getInstance().getConnexion()
+					.prepareStatement(requete);
+			ps.setString(1,iot_id);
+			ps.setString(2,capteur_id);
+			rs = ps.executeQuery();
+			// Charger les enregistrements dans la collection
+			while (rs.next()) {
+				result = chargerUnEnregistrement(rs);
+			}
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
+		return result;
 	}
 
 	@Override
@@ -106,5 +122,11 @@ public class CapteurDAO implements DaoInterface<Capteur, String> {
 			e.printStackTrace();
 		}
 		return capteur;
+	}
+
+	@Override
+	public Capteur getOne(String idMetier) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

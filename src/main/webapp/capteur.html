@@ -2,27 +2,33 @@
 <div ng-controller="ChartCtrl as chartCtrl">
 	<h3>
 		Capteur {{capteur.id}} - {{capteur.typeCapteur.libelle}}
-		<div ng-if="capteur.statut=='rouge'"
-			class="statut statut-rouge"></div>
-		<div ng-if="capteur.statut=='vert'"
-			class="statut statut-vert"></div>
+		<div ng-if="capteur.statut=='rouge'" class="statut statut-rouge"></div>
+		<div ng-if="capteur.statut=='vert'" class="statut statut-vert"></div>
 	</h3>
-		<div >
-		<h4>{{chartCtrl.min.valeur}} {{capteur.typeCapteur.unite}} / {{chartCtrl.last.valeur}} {{capteur.typeCapteur.unite}} / {{chartCtrl.max.valeur}} {{capteur.typeCapteur.unite}}</h4>
+	<div>
+		<h4>{{chartCtrl.min.valeur}} {{capteur.typeCapteur.unite}} /
+			{{chartCtrl.last.valeur}} {{capteur.typeCapteur.unite}} /
+			{{chartCtrl.max.valeur}} {{capteur.typeCapteur.unite}}</h4>
 
 	</div>
 	<!-- 	<section class="range-slider" max="chartCtrl.max" min="0" ng-model="chartCtrl.range" step="0.5" data-range-slider=""> -->
 	<highchart id="chart1" config="chartCtrl.config"></highchart>
 
-	<div ng-if="chartCtrl.range != null">
+	<div class="container" ng-if="chartCtrl.range != null">
 
-		<section class="range-slider" data-range-slider
-			ng-model="chartCtrl.range" min="-10" max="40"
-			change="chartCtrl.setPlot"></section>
+		<div class="col-md-3">
+			<section class="range-slider" data-range-slider
+				ng-model="chartCtrl.range" min="-10" max="40"
+				change="chartCtrl.setPlot"></section>
 
-		<p class="min">Ref-Min = {{chartCtrl.range.from}} {{capteur.unite}}</p>
-		<p class="max">Ref-Max = {{chartCtrl.range.to}} {{capteur.unite}}</p>
+			<p class="min">Ref-Min = {{chartCtrl.range.from}}
+				{{capteur.unite}}</p>
+			<p class="max">Ref-Max = {{chartCtrl.range.to}} {{capteur.unite}}</p>
 
+		</div>
+		<div class="col-md-3">
+		<img src="images/soleil.png" ng-show="chartCtrl.soleil.valeur" />
+		</div>
 	</div>
 
 

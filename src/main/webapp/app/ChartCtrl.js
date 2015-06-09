@@ -46,6 +46,7 @@ iotqvt.controller('ChartCtrl', [
 			this.last = MesureService.capteurData[this.idCapteur].last;
 			this.max = MesureService.capteurData[this.idCapteur].max;
 			this.min = MesureService.capteurData[this.idCapteur].min;
+			this.soleil = MesureService.capteurData[this.idCapteur].soleil;
 			
 			var plotLines = [];
 			this.range = {

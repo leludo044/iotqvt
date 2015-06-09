@@ -14,57 +14,47 @@
 <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-<div class="container">
-	<div ng-app="iotqvt">
-		<nav class="navbar navbar-inverse">
-			<div id="menu">
-				<img id="profil" src="images/avatar2.jpg" alt="profil"
-					class="img-circle"> 
-				<a id="nom1" href="#" class="navbar-link">Pseudo </a>
-				<button id="parametre" type="button"
-					class="btn btn-default navbar-btn">
-					<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-				</button>
-				<button id="deconnexion" type="button"
-					class="btn btn-default btn-primary navbar-btn">
-					<span class="glyphicon glyphicon-off" aria-hidden="true"></span>
-				</button>
-			</div>
-		</nav>
-		<div ng-controller="IOTCtrl as iotCtrl">
-			<h1>Qualité de vie au travail et facteurs environnementaux</h1>
-			<div>
-				<form class="row">
-					<div class="col-md-3">
-						<select class="form-control" ng-model="iotCtrl.iotSelect"
-							ng-options="iot.id for iot in iotCtrl.iots"></select>
-					</div>
-					<div class="col-md-3">
-						<div class="form-group has-success has-feedback">
-							<input type="text" class="form-control" placeholder="Entité"
-								id="inputSuccess2" aria-describedby="inputSuccess2Status">
-							<span class="glyphicon glyphicon-ok form-control-feedback"
-								aria-hidden="true"></span> <span id="inputSuccess2Status"
-								class="sr-only">(success)</span>
+	<div class="container">
+		<div ng-app="iotqvt">
+			<nav class="navbar navbar-inverse">
+				<div id="menu">
+					<img id="profil" src="images/avatar2.jpg" alt="profil"
+						class="img-circle"> <a id="nom1" href="#"
+						class="navbar-link">Pseudo </a>
+					<button id="parametre" type="button"
+						class="btn btn-default navbar-btn">
+						<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+					</button>
+					<button id="deconnexion" type="button"
+						class="btn btn-default btn-primary navbar-btn">
+						<span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+					</button>
+				</div>
+			</nav>
+			<div ng-controller="IOTCtrl as iotCtrl">
+				<h1>Qualité de vie au travail et facteurs environnementaux</h1>
+				<div>
+					<form class="row">
+						<div class="col-md-4">
+							<label>Entité</label> <select class="form-control"
+								ng-model="iotCtrl.entiteSelect" title="Choix de l'entité"
+								ng-options="entite.regate+' '+entite.libelle for entite in iotCtrl.entites"></select>
 						</div>
-					</div>
-					<div class="col-md-3">
-						<div class="form-group has-warning">
-							<input type="text" class="form-control" placeholder="Pièce">
+						<div class="col-md-4">
+						<label>Pièce</label>
+							<select class="form-control" ng-model="iotCtrl.pieceSelect"
+								title="Choix de la pièce"
+								ng-options="piece for piece in iotCtrl.entiteSelect.pieces"></select>
 						</div>
-					</div>
-					<div class="col-md-3">
-						<div class="form-group has-error has-feedback">
-							<input type="text" class="form-control" placeholder="IOT"
-								id="inputError2" aria-describedby="inputError2Status"> <span
-								class="glyphicon glyphicon-remove form-control-feedback"
-								aria-hidden="true"></span> <span id="inputError2Status"
-								class="sr-only">(error)</span>
+						<div class="col-md-4">
+						<label>Objet</label>
+							<select class="form-control" ng-model="iotCtrl.iotSelect"
+								title="Choix de l'object connecté"
+								ng-options="iot.id for iot in iotCtrl.iots"></select>
 						</div>
-					</div>
-				</form>
-			</div>
-			<!--
+					</form>
+				</div>
+				<!--
 			<div id="rasp" ng-if="iotCtrl.iotSelect!=null">
 				<h2 id="titre2">
 					{{iotCtrl.iotSelect.id}}
@@ -77,21 +67,21 @@
 				</h2>
 			</div>
 			-->
-			<div class="row">
-				<div class="col-md-6 capteur capteur-{{capteur.couleur}}"
-					ng-repeat="capteur in iotCtrl.iotSelect.capteurs">
-					<!-- 					{{capteur.couleur}} -->
-					<capteur capteur="capteur"></capteur>
+				<div class="row">
+					<div class="col-md-6 capteur capteur-{{capteur.couleur}}"
+						ng-repeat="capteur in iotCtrl.iotSelect.capteurs">
+						<!-- 					{{capteur.couleur}} -->
+						<capteur capteur="capteur"></capteur>
 
+					</div>
 				</div>
+				</form>
 			</div>
-			</form>
+
 		</div>
 
 	</div>
-
 	</div>
-</div>
 	<script type="text/javascript" src="./lib/jquery/jquery-2.1.3.js"></script>
 	<script type="text/javascript" src="./lib/angular/angular.js"></script>
 	<script src="./lib/bootstrap-3.3.4-dist/js/bootstrap.min.js"></script>
@@ -108,7 +98,7 @@
 	<script src="./app/WebServiceFactory.js"></script>
 	<script src="./app/ChartCtrl.js"></script>
 	<script src="./app/IOTCtrl.js"></script>
-		<script src="./app/IOTService.js"></script>
+	<script src="./app/IOTService.js"></script>
 	<script src="./app/CapteurCtrl.js"></script>
 	<script src="./app/MesureService.js"></script>
 </body>

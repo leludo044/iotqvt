@@ -4,5 +4,11 @@ iotqvt.controller('IOTCtrl' , ['IOTService',function (IOTService) {
 	
 	this.iots = IOTService.iots;
 	this.iotSelect = null;
+	
+	this.entites = [{regate:'444150', libelle:"PAGEOT CSORH", pieces:['011', '012']},
+	                {regate:'444180', libelle:"PAGEOT CSOFI", pieces:['425', '426', '427']}];
+	this.entiteSelect = null ;
 
+	this.pieces = null ;
+	
 }]);

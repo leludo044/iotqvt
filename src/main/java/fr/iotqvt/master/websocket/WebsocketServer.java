@@ -48,7 +48,8 @@ public class WebsocketServer {
 		System.out.println("onMessage"+json);
 		try{
 			Gson gson = new Gson();
-			Mesure m = gson.fromJson(json, Mesure.class);
+			MesureMessage msg = gson.fromJson(json, MesureMessage.class);
+			Mesure m = msg.getMesure();
 			if(m.getCapteur() != null){
 				 try {
 						Jdbc.getInstance().connecter();
@@ -92,8 +93,6 @@ public class WebsocketServer {
 		}
 	}
 	public void broadcastText(String json){
-	
-		
 		for(Session uneSession : sessions){
 			uneSession.getAsyncRemote().sendText(json);
 		}

@@ -18,11 +18,14 @@ public class JdbcFactory {
 
 		URI dbUri = null;
 		try {
-			dbUri = new URI(System.getenv("CLEARDB_DATABASE_URL"));
+			String var = System.getenv("CLEARDB_DATABASE_URL") ;
+			dbUri = new URI(var);
+			System.out.println("Variable CLEARDB_DATABASE_URL trouvée : "+var);
 		} catch (Exception e) {
 			try {
 				dbUri = new URI(
 						"mysql://bf7596b269ec35:96131fcf@eu-cdbr-west-01.cleardb.com/heroku_32cfb72abf5da72?reconnect=true");
+				System.out.println("Variable CLEARDB_DATABASE_URL non trouvée ! Connexion Heroku effectuée !");
 			} catch (URISyntaxException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();

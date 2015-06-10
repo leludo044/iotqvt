@@ -22,7 +22,7 @@ public class CapteurDAO implements DaoInterface<Capteur, String> {
 		}
 		
 		int num= 0;
-        String requete = "INSERT IGNORE INTO capteur (id, typecapteur_libelle, iot_id, max, min) VALUES (?, ?,?,?,?)";
+        String requete = "INSERT IGNORE INTO capteur (id, typecapteur_libelle, iot_id, min, max) VALUES (?, ?,?,?,?)";
         try {
             PreparedStatement ps = Jdbc.getInstance().getConnexion().prepareStatement(requete);
 
@@ -35,7 +35,7 @@ public class CapteurDAO implements DaoInterface<Capteur, String> {
           
             ps.setString(3, capteur.getIot());
             ps.setFloat(4, capteur.getRefMin());
-            ps.setFloat(5, capteur.getRefMin());
+            ps.setFloat(5, capteur.getRefMax());
             num =  ps.executeUpdate();
             
 
@@ -118,6 +118,8 @@ public class CapteurDAO implements DaoInterface<Capteur, String> {
 			capteur.setId(rs.getString("id"));
 			capteur.setIot(rs.getString("iot_id"));
 			capteur.setTypeCapteur(typeCapteurDAO.getOne(rs.getString("typecapteur_libelle")));
+			capteur.setRefMax(rs.getFloat("max"));
+			capteur.setRefMin(rs.getFloat("min"));
 			
 		} catch (SQLException ex) {
 			ex.printStackTrace();

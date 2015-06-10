@@ -49,8 +49,8 @@ iotqvt.controller('ChartCtrl', [
 			
 			var plotLines = [];
 			this.range = {
-				from : 0,
-				to : 20
+				from : this.capteur.refMin,
+				to : this.capteur.refMax
 			};
 			this.setPlot = function(range) {
 				_.remove(plotLines, function(n) {

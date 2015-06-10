@@ -24,6 +24,7 @@ import fr.iotqvt.master.modele.metier.Mesure;
 public class WebsocketServer {
 
 	private static final String MESSAGE_MESURE_PREFIXE = "{\"type\":\"mesure\"";
+	private static final String MESSAGE_IDENTIFICATION_PREFIXE = "{\"type\":\"identification\"";
 
 	private static final Set<Session> sessions = new CopyOnWriteArraySet<Session>();
 	private Session session;
@@ -56,11 +57,14 @@ public class WebsocketServer {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-					IOTDAO iotDao = new IOTDAO();
-					CapteurDAO capteurDao = new CapteurDAO();
+					// TODO a déporter dans l'identification
+//					IOTDAO iotDao = new IOTDAO();
+//					CapteurDAO capteurDao = new CapteurDAO();
+//					iotDao.create(new IOT(m.getCapteur().getIot()));
+//					capteurDao.create(m.getCapteur());
+					// FINTODO
+					
 					MesureDAO mesuredao = new MesureDAO();
-					iotDao.create(new IOT(m.getCapteur().getIot()));
-					capteurDao.create(m.getCapteur());
 					mesuredao.create(m);
 					broadcastText(json);
 					try {
@@ -70,6 +74,11 @@ public class WebsocketServer {
 						e1.printStackTrace();
 					}
 				}
+			} else if (json.startsWith(MESSAGE_IDENTIFICATION_PREFIXE)) {
+				System.out.println("Identification reçue");
+				Gson gson = new Gson();
+				IdentificationMessage msg = gson.fromJson(json, IdentificationMessage.class);
+				identifier(msg) ;
 			}
 
 		} catch (Exception e) {
@@ -98,5 +107,26 @@ public class WebsocketServer {
 		for (Session uneSession : sessions) {
 			uneSession.getAsyncRemote().sendText(json);
 		}
+	}
+	
+	
+	private void identifier(IdentificationMessage msg) throws Exception {
+		System.out.println("Identification : "+msg.getCedec());
+		// TODO Persister en base
+		try {
+			Jdbc.getInstance().connecter();
+		} catch (ClassNotFoundException | SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		IOTDAO iotDao = new IOTDAO();
+		iotDao.create(msg.getCedec());
+		try {
+			Jdbc.getInstance().deconnecter();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
 	}
 }

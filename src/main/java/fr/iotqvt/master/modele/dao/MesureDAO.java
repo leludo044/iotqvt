@@ -78,7 +78,7 @@ public class MesureDAO implements DaoInterface<Mesure, String> {
 		ArrayList<Mesure> result = new ArrayList<Mesure>();
 		ResultSet rs;
 		// préparer la requête
-		String requete = "SELECT * FROM mesure  WHERE capteur_id=? and capteur_iot_id=?";
+		String requete = "SELECT * FROM mesure  WHERE capteur_id=? and capteur_iot_id=? ORDER BY date";
 		try {
 			PreparedStatement ps = Jdbc.getInstance().getConnexion()
 					.prepareStatement(requete);
@@ -90,6 +90,7 @@ public class MesureDAO implements DaoInterface<Mesure, String> {
 				Mesure mesure = chargerUnEnregistrement(rs);
 				result.add(mesure);
 			}
+			rs.close();
 		} catch (SQLException ex) {
 			ex.printStackTrace();
 		}

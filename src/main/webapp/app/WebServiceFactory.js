@@ -1,43 +1,50 @@
-iotqvt.service('WebServiceFactory', ['$q', '$rootScope', '_', '$timeout', '$http' ,function($q, $rootScope, _, $timeout, $http) {
-	var _onReceiveData = _.noop;
-	
-	
-    var Service = {};
+iotqvt.service('WebServiceFactory', [
+		'$q',
+		'$rootScope',
+		'_',
+		'$timeout',
+		'$http',
+		function($q, $rootScope, _, $timeout, $http) {
+			var _onReceiveData = _.noop;
 
-    var url = "http://" + document.location.hostname + ":" + document.location.port
-    		+ document.location.pathname + "webservice/mesures";
-	
+			var Service = {};
 
-//    
-//    	   $http.get(url).success( function(data){
-//    		   listener(data) ;
-//    		   }
-//    		   
-//    	   );
-//    	   
-    
- 
-    
+			var url = "http://" + document.location.hostname + ":"
+					+ document.location.port + document.location.pathname
+					+ "webservice/mesures";
 
+			//    
+			// $http.get(url).success( function(data){
+			// listener(data) ;
+			// }
+			//    		   
+			// );
+			//    	   
 
+			function listener(data) {
+				$timeout(function() {
+					console.log("webservice receiveData")
+					_onReceiveData(data);
+				});
 
-    function listener(data) {
-      $timeout(function () {
-    	  console.log("webservice receiveData")
-    	  _onReceiveData(data);
-      });
-	
-    }
-    Service.load = function () {
-    	  $http.get(url).success( function(data){
-   		   listener(data) ;
-   		   }
-   		   
-   	   );
-	}
-  Service.onReceiveData = function (f) {
-		_onReceiveData = f;
-	}
- 
-    return Service;
-}])
+			}
+			Service.load = function(capteurid, iotid) {
+				$http({
+					url : url+"/bycapteur",
+					method : "GET",
+					params : {
+						capteurid : capteurid,
+						iotid :iotid
+					}
+				}).success(function(data) {
+					listener(data);
+				}
+
+				);
+			}
+			Service.onReceiveData = function(f) {
+				_onReceiveData = f;
+			}
+
+			return Service;
+		} ])

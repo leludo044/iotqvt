@@ -10,7 +10,12 @@ iotqvt.factory('WebSocketService', ['$q', '$rootScope', '_', '$timeout' ,functio
     ws.onopen = function(){  
         console.log("Connexion");  
     };
-    
+    ws.onclose = function(){  
+        console.log("close");  
+    };
+    ws.onerror = function(){  
+        console.log("error");  
+    };
     ws.onmessage = function(message) {
         listener(JSON.parse(message.data));
     };

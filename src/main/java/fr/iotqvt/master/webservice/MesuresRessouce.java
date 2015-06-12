@@ -10,6 +10,7 @@ import javax.annotation.PreDestroy;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import fr.iotqvt.master.modele.dao.MesureDAO;
@@ -35,6 +36,25 @@ public class MesuresRessouce {
 		Collection<Mesure> mesures = null;
 		try {
 		 mesures =	mesureDao.getAll();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		if(mesures instanceof List){
+			return (List<Mesure>) mesures;
+			
+		}else{
+			return new ArrayList<Mesure>(mesures);
+		}
+	}	
+	@GET
+	@Path("bycapteur")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Mesure> getMesuresByCapteur(@QueryParam("capteurid") String capteurid, @QueryParam("iotid") String iotid){
+		MesureDAO mesureDao = new MesureDAO();
+		Collection<Mesure> mesures = null;
+		try {
+		 mesures =	mesureDao.getByCapteur(capteurid, iotid);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

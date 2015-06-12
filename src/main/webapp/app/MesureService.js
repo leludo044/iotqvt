@@ -37,11 +37,12 @@ iotqvt.service('MesureService',
 				}
 			});
 			function pushMesure(mesure) {
-//				var mesure = data.mesure;
+			
+				if(mesure ==null || mesure.capteur == null || mesure.capteur.iot ==null){
+					return;
+				}
 				// Arrondi de la valeur à 1 chiffre après la virgule 
 				mesure.valeur = Math.round(mesure.valeur*10)/10;
-
-
 				// Répartition des mesures dans les différents capteurs
 				var key = mesure.capteur.iot.concat(mesure.capteur.id);
 				if(typeof capteurData[key]  === 'undefined'){
@@ -123,7 +124,7 @@ iotqvt.service('MesureService',
 			};
 
 			var loadMesure = function(capteur){
-				WebServiceFactory.load();
+				WebServiceFactory.load(capteur.id, capteur.iot);
 			}
 			return {
 				capteurData : capteurData,

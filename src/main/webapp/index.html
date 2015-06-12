@@ -35,22 +35,25 @@
 				<h1>Qualité de vie au travail et facteurs environnementaux</h1>
 				<div>
 					<form class="row">
-						<div class="col-md-4">
+						<div class="col-md-3">
 							<label>Entité</label> <select class="form-control"
 								ng-model="iotCtrl.entiteSelect" title="Choix de l'entité"
 								ng-options="entite.regate+' '+entite.libelle for entite in iotCtrl.entites"></select>
 						</div>
-						<div class="col-md-4">
-						<label>Pièce</label>
-							<select class="form-control" ng-model="iotCtrl.pieceSelect"
-								title="Choix de la pièce"
+						<div class="col-md-3">
+							<label>Pièce</label> <select class="form-control"
+								ng-model="iotCtrl.pieceSelect" title="Choix de la pièce"
 								ng-options="piece for piece in iotCtrl.entiteSelect.pieces"></select>
 						</div>
-						<div class="col-md-4">
-						<label>Objet</label>
-							<select class="form-control" ng-model="iotCtrl.iotSelect"
-								title="Choix de l'object connecté"
+						<div class="col-md-3">
+							<label>Objet</label> <select class="form-control"
+								ng-model="iotCtrl.iotSelect" title="Choix de l'object connecté"
 								ng-options="iot.id for iot in iotCtrl.iots"></select>
+						</div>
+						<div class="col-md-3">
+							<img src="images/soleil.png" ng-show="soleil" /> <img
+								src="images/nuageux.png" ng-hide="soleil" />
+
 						</div>
 					</form>
 				</div>

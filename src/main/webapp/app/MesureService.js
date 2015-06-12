@@ -1,7 +1,7 @@
 'use strict';
 
 iotqvt.service('MesureService',
-		function(WebSocketService, WebServiceFactory, _) {
+		function(WebSocketService, WebServiceFactory, _, $rootScope) {
 
 			var mesures = [];
 			var chartData = [];
@@ -88,6 +88,9 @@ iotqvt.service('MesureService',
 					});
 				}
 
+				/*
+				 * On vérifie si on est dans les seuils pour mettre à jour l'état du capteur
+				 */
 				if ((mesure.valeur > capteurData[key].capteur.refMax) || (mesure.valeur < capteurData[key].capteur.refMin)) {
 					_.assign(capteurData[key].soleil, {
 						valeur : false
@@ -97,6 +100,11 @@ iotqvt.service('MesureService',
 						valeur : true
 					});
 				}
+				
+				/*
+				 * On informe le $rootScope des états de tous les capteurs
+				 */
+				$rootScope.changeMeteo(capteurData);
 
 			}
 

@@ -54,6 +54,8 @@ iotqvt.service('MesureService',
 			});
 			function pushMesure(data) {
 				var mesure = data.mesure;
+				// Arrondi de la valeur à 1 chiffre après la virgule 
+				data.mesure.valeur = Math.round(data.mesure.valeur*10)/10;
 				mesures.push(mesure);
 				chartData.push([ mesure.date, mesure.valeur ]);
 

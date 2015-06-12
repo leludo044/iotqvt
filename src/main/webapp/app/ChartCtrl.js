@@ -35,11 +35,12 @@ iotqvt.controller('ChartCtrl', [
 					timezoneOffset : -2 * 60
 				}
 			});
-
+			
 			this.capteur = $scope.capteur;
 			// Construction de la clé d'identification du capteur (id de l'iot + id du capteur)
 			this.idCapteur  = this.capteur.iot.concat(this.capteur.id) ;
-
+			//Chargement de l'historique de mesure pour la capteur
+			MesureService.loadMesure(	this.capteur);
 			// Enregistrement de ce capteur pour permettre la constitution d'un jeu de mesures
 			MesureService.register(this.capteur, this.idCapteur);
 

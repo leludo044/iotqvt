@@ -1,4 +1,4 @@
-iotqvt.factory('WebServiceFactory', ['$q', '$rootScope', '_', '$timeout', '$http' ,function($q, $rootScope, _, $timeout, $http) {
+iotqvt.service('WebServiceFactory', ['$q', '$rootScope', '_', '$timeout', '$http' ,function($q, $rootScope, _, $timeout, $http) {
 	var _onReceiveData = _.noop;
 	
 	
@@ -8,13 +8,13 @@ iotqvt.factory('WebServiceFactory', ['$q', '$rootScope', '_', '$timeout', '$http
     		+ document.location.pathname + "webservice/mesures";
 	
 
-    
-    	   $http.get(url).success( function(data){
-    		   listener(data) ;
-    		   }
-    		   
-    	   );
-    	   
+//    
+//    	   $http.get(url).success( function(data){
+//    		   listener(data) ;
+//    		   }
+//    		   
+//    	   );
+//    	   
     
  
     
@@ -28,7 +28,13 @@ iotqvt.factory('WebServiceFactory', ['$q', '$rootScope', '_', '$timeout', '$http
       });
 	
     }
-
+    Service.load = function () {
+    	  $http.get(url).success( function(data){
+   		   listener(data) ;
+   		   }
+   		   
+   	   );
+	}
   Service.onReceiveData = function (f) {
 		_onReceiveData = f;
 	}

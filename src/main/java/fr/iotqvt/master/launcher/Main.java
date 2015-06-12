@@ -15,7 +15,12 @@ public class Main {
 
 	public static void main(String[] args) throws ServletException, LifecycleException, MalformedURLException {
 	    JdbcFactory.creer();
-		String webappDirLocation = "src/main/webapp/";
+	    String webappDirLocation = "./src/main/webapp/";
+	    String contextPath = "/";
+	    if(args.length ==1){
+	    	 webappDirLocation = args[0];
+	    	 contextPath = "";
+	    }
         Tomcat tomcat = new Tomcat();
   
         //The port that we should run on can be set into an environment variable
@@ -27,9 +32,9 @@ public class Main {
 
         tomcat.setPort(Integer.valueOf(webPort));
 
-        Context context =  tomcat.addWebapp("/", new File(webappDirLocation).getAbsolutePath());
-        System.out.println("configuring app with basedir: " + new File("./" + webappDirLocation).getAbsolutePath());
-        File configFile = new File(webappDirLocation + "WEB-INF/web.xml");
+        Context context =  tomcat.addWebapp(contextPath, new File(webappDirLocation).getAbsolutePath());
+        System.out.println("configuring app with basedir: " + new File( webappDirLocation).getAbsolutePath());
+        File configFile = new File(webappDirLocation + "/WEB-INF/web.xml");
         context.setConfigFile(configFile.toURI().toURL());
         tomcat.start();
         tomcat.getServer().await();

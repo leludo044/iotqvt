@@ -2,9 +2,8 @@
 
 iotqvt.service('MesureService',
 		function(WebSocketService, WebServiceFactory, _, $rootScope) {
+			console.log("new MesureService");
 
-			var mesures = [];
-			var chartData = [];
 			var capteurData = {};
 			var last = {
 				valeur : null,
@@ -27,40 +26,30 @@ iotqvt.service('MesureService',
 			WebServiceFactory.onReceiveData(function(data) {
 				var x;
 				for (x in data) {
-					// mesures.push(data[x]);
-					// chartData.push([ data[x].date, data[x].valeur ]);
-					pushData(data[x]);
+					pushMesure(data[x]);
 				}
-
-				// _.assign(last, _.max(mesures, function(mesure) {
-				// return mesure.date;
-				// }));
-				// _.assign(first, _.min(mesures, function(mesure) {
-				// return mesure.date;
-				// }));
-				// _.assign(max, _.max(mesures, function(mesure) {
-				// return mesure.valeur;
-				// }));
-				// _.assign(min, _.min(mesures, function(mesure) {
-				// return mesure.valeur;
-				// }));
-
 			});
 
 			WebSocketService.onReceiveData(function(data) {
 				if (data.type === "mesure") {
-					pushMesure(data);
+					var mesure = data.mesure;
+					pushMesure(mesure);
 				}
 			});
-			function pushMesure(data) {
-				var mesure = data.mesure;
+			function pushMesure(mesure) {
+//				var mesure = data.mesure;
 				// Arrondi de la valeur à 1 chiffre après la virgule 
-				data.mesure.valeur = Math.round(data.mesure.valeur*10)/10;
-				mesures.push(mesure);
-				chartData.push([ mesure.date, mesure.valeur ]);
+				mesure.valeur = Math.round(mesure.valeur*10)/10;
+
 
 				// Répartition des mesures dans les différents capteurs
 				var key = mesure.capteur.iot.concat(mesure.capteur.id);
+				if(typeof capteurData[key]  === 'undefined'){
+					capteurData[key] = {mesures:[], max :{} , min:{}, soleil:{}, capteur:{}};
+				}
+				if(typeof capteurData[key].last  !== 'undefined' && capteurData[key].last.date > mesure.date){
+					return;
+				}
 				capteurData[key].mesures.push([ mesure.date, mesure.valeur ]);
 
 				// Collecte et assignation des données annexes
@@ -133,15 +122,17 @@ iotqvt.service('MesureService',
 				};
 			};
 
+			var loadMesure = function(capteur){
+				WebServiceFactory.load();
+			}
 			return {
-				mesures : mesures,
-				chartData : chartData,
 				capteurData : capteurData,
 				last : last,
 				first : first,
 				min : min,
 				max : max,
 				soleil : soleil,
-				register : register
+				register : register,
+				loadMesure :loadMesure
 			};
 		});

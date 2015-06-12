@@ -50,7 +50,7 @@ public class MesureDAO implements DaoInterface<Mesure, String> {
 		ArrayList<Mesure> result = new ArrayList<Mesure>();
 		ResultSet rs;
 		// préparer la requête
-		String requete = "SELECT * FROM mesure  ";
+		String requete = "SELECT * FROM mesure ORDER BY date";
 		try {
 			PreparedStatement ps = Jdbc.getInstance().getConnexion()
 					.prepareStatement(requete);

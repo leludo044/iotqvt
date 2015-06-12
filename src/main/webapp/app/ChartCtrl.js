@@ -102,7 +102,7 @@ iotqvt.controller('ChartCtrl', [
 		            minorTickColor: '#000000',
 		            minorTickWidth: 1,
 					title : {
-						text : 'Date',
+	
 						style: { "color": "#00002E", "fontWeight": "bold" }
 					}
 				},
@@ -130,7 +130,7 @@ iotqvt.controller('ChartCtrl', [
 				},
 
 				series : [ {
-					name : "Test",
+					name : this.capteur.typeCapteur.libelle,
 					data : MesureService.capteurData[this.idCapteur].mesures,
 					color:"#00004A"
 				}

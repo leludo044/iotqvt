@@ -22,6 +22,7 @@ iotqvt.service('MesureService',
 				valeur : null,
 				date : null
 			};
+			var soleil = true;
 
 			WebServiceFactory.onReceiveData(function(data) {
 				var x;
@@ -86,13 +87,24 @@ iotqvt.service('MesureService',
 						date : mesure.date
 					});
 				}
+
+				if ((mesure.valeur > capteurData[key].capteur.refMax) || (mesure.valeur < capteurData[key].capteur.refMin)) {
+					_.assign(capteurData[key].soleil, {
+						valeur : false
+					});
+				} else {
+					_.assign(capteurData[key].soleil, {
+						valeur : true
+					});
+				}
+
 			}
 
 			/*
 			 * Enregistrement et initialisation d'un réceptacle de mesures pour
 			 * un capteur.
 			 */
-			var register = function(idCapteur) {
+			var register = function(capteur, idCapteur) {
 				capteurData[idCapteur] = {
 					mesures : [],
 					last : {},
@@ -103,7 +115,11 @@ iotqvt.service('MesureService',
 					min : {
 						valeur : null,
 						date : null
-					}
+					},
+					soleil : {
+						valeur : false
+					}, 
+					capteur : capteur
 				};
 			};
 
@@ -115,6 +131,7 @@ iotqvt.service('MesureService',
 				first : first,
 				min : min,
 				max : max,
+				soleil : soleil,
 				register : register
 			};
 		});

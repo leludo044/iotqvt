@@ -14,15 +14,22 @@
 	<!-- 	<section class="range-slider" max="chartCtrl.max" min="0" ng-model="chartCtrl.range" step="0.5" data-range-slider=""> -->
 	<highchart id="chart1" config="chartCtrl.config"></highchart>
 
-	<div ng-if="chartCtrl.range != null">
+	<div class="container" ng-if="chartCtrl.range != null">
 
-		<section class="range-slider" data-range-slider
-			ng-model="chartCtrl.range" min="-10" max="40"
-			change="chartCtrl.setPlot"></section>
+		<div class="col-md-3">
+			<section class="range-slider" data-range-slider
+				ng-model="chartCtrl.range" min="-10" max="40"
+				change="chartCtrl.setPlot"></section>
 
-		<p class="min">Ref-Min = {{chartCtrl.range.from}} {{capteur.unite}}</p>
-		<p class="max">Ref-Max = {{chartCtrl.range.to}} {{capteur.unite}}</p>
+			<p class="min">Ref-Min = {{chartCtrl.range.from}}
+				{{capteur.unite}}</p>
+			<p class="max">Ref-Max = {{chartCtrl.range.to}} {{capteur.unite}}</p>
 
+		</div>
+		<div class="col-md-3">
+		<img src="images/soleil.png" ng-show="chartCtrl.soleil.valeur" />
+		<img src="images/nuageux.png" ng-hide="chartCtrl.soleil.valeur" />
+		</div>
 	</div>
 
 

@@ -41,11 +41,13 @@ iotqvt.controller('ChartCtrl', [
 			this.idCapteur  = this.capteur.iot.concat(this.capteur.id) ;
 
 			// Enregistrement de ce capteur pour permettre la constitution d'un jeu de mesures
-			MesureService.register(this.idCapteur);
+			MesureService.register(this.capteur, this.idCapteur);
 
 			this.last = MesureService.capteurData[this.idCapteur].last;
 			this.max = MesureService.capteurData[this.idCapteur].max;
 			this.min = MesureService.capteurData[this.idCapteur].min;
+			this.soleil = MesureService.capteurData[this.idCapteur].soleil;
+			
 			
 			var plotLines = [];
 			this.range = {

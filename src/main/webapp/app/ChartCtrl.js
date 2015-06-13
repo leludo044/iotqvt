@@ -62,7 +62,7 @@ iotqvt.controller('ChartCtrl', [
 				plotLines.push({
 					value : range.to,
 					color : 'red',
-					width : 1,
+					width : 2,
 					label : {
 						text : 'ref-max',
 						align : 'left',
@@ -74,7 +74,7 @@ iotqvt.controller('ChartCtrl', [
 				plotLines.push({
 					value : range.from,
 					color : 'red',
-					width : 1,
+					width : 2,
 					label : {
 						text : 'ref-min',
 						align : 'left',
@@ -88,8 +88,45 @@ iotqvt.controller('ChartCtrl', [
 				options : {
 					chart : {
 						type : 'line'
-					}
+					},
+			        navigator: {
+		                enabled : true
+//		                adadaptToUpdatedDataapt : true
+		            }
 				},
+				   useHighStocks: true,
+			    rangeSelector : {
+	                allButtonsEnabled: true,
+	                buttons: [{
+	                    type: 'month',
+	                    count: 3,
+	                    text: 'Day',
+	                    dataGrouping: {
+	                        forced: true,
+	                        units: [['day', [1]]]
+	                    }
+	                }, {
+	                    type: 'year',
+	                    count: 1,
+	                    text: 'Week',
+	                    dataGrouping: {
+	                        forced: true,
+	                        units: [['week', [1]]]
+	                    }
+	                }, {
+	                    type: 'all',
+	                    text: 'Month',
+	                    dataGrouping: {
+	                        forced: true,
+	                        units: [['month', [1]]]
+	                    } 
+	                }],
+	                buttonTheme: {
+	                    width: 60
+	                },
+	                selected: 2
+	            },
+		         
 				xAxis : {
 					type : 'datetime',
 					dateTimeLabelFormats : {

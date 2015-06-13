@@ -8,7 +8,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import fr.iotqvt.master.modele.jdbc.Jdbc;
+import fr.iotqvt.master.modele.metier.Capteur;
 import fr.iotqvt.master.modele.metier.Mesure;
+import fr.iotqvt.master.modele.metier.TypeCapteur;
 
 public class MesureDAO implements DaoInterface<Mesure, String> {
 
@@ -78,7 +80,7 @@ public class MesureDAO implements DaoInterface<Mesure, String> {
 		ArrayList<Mesure> result = new ArrayList<Mesure>();
 		ResultSet rs;
 		// préparer la requête
-		String requete = "SELECT * FROM mesure  WHERE capteur_id=? and capteur_iot_id=? ORDER BY date";
+		String requete = "SELECT * FROM mesure m inner join capteur c on c.id = m.capteur_id and c.iot_id = m.capteur_iot_id inner join typecapteur t on t.libelle = c.typecapteur_libelle WHERE capteur_id=? and capteur_iot_id=? ORDER BY date";
 		try {
 			PreparedStatement ps = Jdbc.getInstance().getConnexion()
 					.prepareStatement(requete);
@@ -87,10 +89,9 @@ public class MesureDAO implements DaoInterface<Mesure, String> {
 			rs = ps.executeQuery();
 			// Charger les enregistrements dans la collection
 			while (rs.next()) {
-				Mesure mesure = chargerUnEnregistrement(rs);
+				Mesure mesure = chargerUnEnregistrementAvecCapteur(rs);
 				result.add(mesure);
 			}
-			rs.close();
 		} catch (SQLException ex) {
 			ex.printStackTrace();
 		}
@@ -98,14 +99,9 @@ public class MesureDAO implements DaoInterface<Mesure, String> {
 	}
 	private Mesure chargerUnEnregistrement(ResultSet rs) {
 		Mesure mesure = new Mesure();
-		CapteurDAO capteurDAO = new CapteurDAO();
 		try {
 			mesure.setValeur(rs.getFloat("valeur"));
 			mesure.setDate(rs.getTimestamp("date").getTime());
-//			Capteur capteur = new Capteur();
-//			capteur.setId(rs.getString("capteur_id"));
-//			capteur.setIot(rs.getString("capteur_iot_id"));
-			mesure.setCapteur(capteurDAO.getOne(rs.getString("capteur_iot_id"), rs.getString("capteur_id")));
 		} catch (SQLException ex) {
 			ex.printStackTrace();
 		} catch (Exception e) {
@@ -114,5 +110,31 @@ public class MesureDAO implements DaoInterface<Mesure, String> {
 		}
 		return mesure;
 	}
-
+	private Mesure chargerUnEnregistrementAvecCapteur(ResultSet rs) {
+		Mesure mesure = new Mesure();
+		try {
+			TypeCapteur type = new TypeCapteur();
+			type.setLibelle(rs.getString("typecapteur_libelle"));
+			type.setUnite(rs.getString("unite"));
+			
+			
+			Capteur capteur = new Capteur();
+			capteur.setId(rs.getString("id"));
+			capteur.setIot(rs.getString("iot_id"));
+			capteur.setTypeCapteur(type);
+			capteur.setRefMax(rs.getFloat("max"));
+			capteur.setRefMin(rs.getFloat("min"));
+			
+		
+			mesure.setValeur(rs.getFloat("valeur"));
+			mesure.setDate(rs.getTimestamp("date").getTime());
+			mesure.setCapteur(capteur);
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return mesure;
+	}
 }

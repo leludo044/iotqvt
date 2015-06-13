@@ -67,12 +67,12 @@ public class WebsocketServer {
 					MesureDAO mesuredao = new MesureDAO();
 					mesuredao.create(m);
 					broadcastText(json);
-					try {
-						Jdbc.getInstance().deconnecter();
-					} catch (SQLException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
+//					try {
+//						Jdbc.getInstance().deconnecter();
+//					} catch (SQLException e1) {
+//						// TODO Auto-generated catch block
+//						e1.printStackTrace();
+//					}
 				}
 			} else if (json.startsWith(MESSAGE_IDENTIFICATION_PREFIXE)) {
 				System.out.println("Identification reçue");

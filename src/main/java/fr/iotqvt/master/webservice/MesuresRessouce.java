@@ -66,14 +66,14 @@ public class MesuresRessouce {
 			return new ArrayList<Mesure>(mesures);
 		}
 	}	
-	@PreDestroy
-	public void detroy(){
-		 try {
-				Jdbc.getInstance().deconnecter();
-			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-	}
+//	@PreDestroy
+//	public void detroy(){
+//		 try {
+//				Jdbc.getInstance().deconnecter();
+//			} catch (SQLException e1) {
+//				// TODO Auto-generated catch block
+//				e1.printStackTrace();
+//			}
+//	}
 
 }

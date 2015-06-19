@@ -51,28 +51,11 @@ public class WebsocketServer {
 				MesureMessage msg = gson.fromJson(json, MesureMessage.class);
 				Mesure m = msg.getMesure();
 				if (m.getCapteur() != null) {
-					try {
-						Jdbc.getInstance().connecter();
-					} catch (ClassNotFoundException | SQLException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-					// TODO a déporter dans l'identification
-//					IOTDAO iotDao = new IOTDAO();
-//					CapteurDAO capteurDao = new CapteurDAO();
-//					iotDao.create(new IOT(m.getCapteur().getIot()));
-//					capteurDao.create(m.getCapteur());
-					// FINTODO
 					
 					MesureDAO mesuredao = new MesureDAO();
 					mesuredao.create(m);
 					broadcastText(json);
-//					try {
-//						Jdbc.getInstance().deconnecter();
-//					} catch (SQLException e1) {
-//						// TODO Auto-generated catch block
-//						e1.printStackTrace();
-//					}
+
 				}
 			} else if (json.startsWith(MESSAGE_IDENTIFICATION_PREFIXE)) {
 				System.out.println("Identification reçue");

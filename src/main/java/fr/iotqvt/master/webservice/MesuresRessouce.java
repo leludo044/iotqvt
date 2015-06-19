@@ -20,15 +20,7 @@ import fr.iotqvt.master.modele.metier.Mesure;
 @Path("mesures")
 public class MesuresRessouce {
 
-	@PostConstruct
-	public void init(){
-		 try {
-				Jdbc.getInstance().connecter();
-			} catch (ClassNotFoundException | SQLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-	}
+
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Mesure> getMesures(){
@@ -66,14 +58,6 @@ public class MesuresRessouce {
 			return new ArrayList<Mesure>(mesures);
 		}
 	}	
-//	@PreDestroy
-//	public void detroy(){
-//		 try {
-//				Jdbc.getInstance().deconnecter();
-//			} catch (SQLException e1) {
-//				// TODO Auto-generated catch block
-//				e1.printStackTrace();
-//			}
-//	}
+
 
 }

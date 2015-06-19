@@ -19,15 +19,7 @@ import fr.iotqvt.master.modele.metier.IOT;
 @Path("iot")
 public class IOTRessouce {
 
-	@PostConstruct
-	public void init(){
-		 try {
-				Jdbc.getInstance().connecter();
-			} catch (ClassNotFoundException | SQLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-	}
+
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<IOT> getIOTs() {
@@ -47,13 +39,5 @@ public class IOTRessouce {
 		}
 	
 	}
-//	@PreDestroy
-//	public void detroy(){
-//		 try {
-//				Jdbc.getInstance().deconnecter();
-//			} catch (SQLException e1) {
-//				// TODO Auto-generated catch block
-//				e1.printStackTrace();
-//			}
-//	}
+
 }

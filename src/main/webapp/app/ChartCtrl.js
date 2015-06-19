@@ -40,7 +40,7 @@ iotqvt.controller('ChartCtrl', [
 			// Construction de la clé d'identification du capteur (id de l'iot + id du capteur)
 			this.idCapteur  = this.capteur.iot.concat(this.capteur.id) ;
 			//Chargement de l'historique de mesure pour la capteur
-			MesureService.loadMesure(	this.capteur);
+//			MesureService.loadMesure(	this.capteur);
 			// Enregistrement de ce capteur pour permettre la constitution d'un jeu de mesures
 			MesureService.register(this.capteur, this.idCapteur);
 
@@ -48,8 +48,13 @@ iotqvt.controller('ChartCtrl', [
 			this.max = MesureService.capteurData[this.idCapteur].max;
 			this.min = MesureService.capteurData[this.idCapteur].min;
 			this.soleil = MesureService.capteurData[this.idCapteur].soleil;
-			
-			
+		
+			this.loadHisto = function(){
+				MesureService.loadMesure(	this.capteur);
+			}
+			this.clean = function(){
+				MesureService.cleanMesure(	this.capteur);
+			}
 			var plotLines = [];
 			this.range = {
 				from : this.capteur.refMin,

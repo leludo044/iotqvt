@@ -1,33 +1,39 @@
 
-<div ng-controller="ChartCtrl as chartCtrl">
-	<div class="row">
-		<div class="col-md-9">
-			<!-- 	<section class="range-slider" max="chartCtrl.max" min="0" ng-model="chartCtrl.range" step="0.5" data-range-slider=""> -->
-			<highchart id="chart1" config="chartCtrl.config"></highchart>
+<div ng-controller="ChartCtrl as chartCtrl" class="row">
+	<div class="col-md-9">
+		<!-- 	<section class="range-slider" max="chartCtrl.max" min="0" ng-model="chartCtrl.range" step="0.5" data-range-slider=""> -->
+		<highchart id="chart1" config="chartCtrl.config"></highchart>
+	</div>
+	<div class="col-md-3">
+		<div class="row text-center">
+			<h3>{{capteur.typeCapteur.libelle}}
+				({{capteur.typeCapteur.unite}})</h3>
 		</div>
-		<div class="col-md-3">
-			<div class="row">
-				<h3>
-					Capteur {{capteur.id}} - {{capteur.typeCapteur.libelle}}
+		<div class="row">
+			<div class="col-xs-3 btn-primary text-center">{{chartCtrl.min.valeur}}
+				{{capteur.typeCapteur.unite}}</div>
+			<div class="col-xs-6 text-center"></div>
+			<div class="col-xs-3 btn-danger text-center">{{chartCtrl.max.valeur}}
+				{{capteur.typeCapteur.unite}}</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-3"></div>
+			<div class="h2 col-xs-6 btn-success text-center">{{chartCtrl.last.valeur}}
+				{{capteur.typeCapteur.unite}}</div>
+			<div class="col-xs-3"></div>
+		</div>
+		<div class="row">
+			<div class="col-xs-3 btn-primary text-center">{{chartCtrl.range.from}}
+				{{capteur.typeCapteur.unite}}</div>
+			<div class="col-xs-6 text-center"></div>
+			<div class="col-xs-3 btn-danger text-center">{{chartCtrl.range.to}} {{capteur.typeCapteur.unite}}
+			</div>
 
-				</h3>
-			</div>
-			<div class="row">
-				<h4>{{chartCtrl.min.valeur}} {{capteur.typeCapteur.unite}} /
-					{{chartCtrl.last.valeur}} {{capteur.typeCapteur.unite}} /
-					{{chartCtrl.max.valeur}} {{capteur.typeCapteur.unite}}</h4>
-			</div>
-			<div class="row">
-				<p class="min">Ref-Min = {{chartCtrl.range.from}}
-					{{capteur.unite}}</p>
-				<p class="max">Ref-Max = {{chartCtrl.range.to}}
-					{{capteur.unite}}</p>
-
-			</div>
-			<div class="row">
-				<img src="images/soleil.png" ng-show="chartCtrl.soleil.valeur" /> <img
-					src="images/nuageux.png" ng-hide="chartCtrl.soleil.valeur" />
-			</div>
 		</div>
 	</div>
+	<div class="row text-center">
+		<img src="images/soleil.png" ng-show="chartCtrl.soleil.valeur" /> <img
+			src="images/nuageux.png" ng-hide="chartCtrl.soleil.valeur" />
+	</div>
+</div>
 </div>

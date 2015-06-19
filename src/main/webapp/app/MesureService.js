@@ -126,6 +126,10 @@ iotqvt.service('MesureService',
 			var loadMesure = function(capteur){
 				WebServiceFactory.load(capteur.id, capteur.iot);
 			}
+			var cleanMesure = function(capteur){
+				var key = capteur.iot.concat(capteur.id);
+				capteurData[key] = {mesures:[], max :{} , min:{}, soleil:{}, capteur:{}};
+			}
 			return {
 				capteurData : capteurData,
 				last : last,
@@ -134,6 +138,7 @@ iotqvt.service('MesureService',
 				max : max,
 				soleil : soleil,
 				register : register,
-				loadMesure :loadMesure
+				loadMesure :loadMesure,
+				cleanMesure :cleanMesure
 			};
 		});

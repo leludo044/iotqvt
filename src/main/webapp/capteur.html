@@ -1,6 +1,10 @@
 
 <div ng-controller="ChartCtrl as chartCtrl" class="row">
-	<div class="col-md-9">
+	<div class="col-md-1">
+		<button class="btn" ng-click="chartCtrl.loadHisto()"> <span class="glyphicon glyphicon-download-alt" ></span></button>
+		<button class="btn" ng-click="chartCtrl.clean()"> <span class="glyphicon glyphicon-erase" ></span></button>
+	</div>
+	<div class="col-md-8">
 		<!-- 	<section class="range-slider" max="chartCtrl.max" min="0" ng-model="chartCtrl.range" step="0.5" data-range-slider=""> -->
 		<highchart id="chart1" config="chartCtrl.config"></highchart>
 	</div>

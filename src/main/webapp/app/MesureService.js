@@ -48,9 +48,9 @@ iotqvt.service('MesureService',
 				if(typeof capteurData[key]  === 'undefined'){
 					capteurData[key] = {mesures:[], max :{} , min:{}, soleil:{}, capteur:{}};
 				}
-				if(typeof capteurData[key].last  !== 'undefined' && capteurData[key].last.date > mesure.date){
-					return;
-				}
+//				if(typeof capteurData[key].last  !== 'undefined' &&  capteurData[key].last !=null && capteurData[key].last.date > mesure.date){
+//					return;
+//				}
 				capteurData[key].mesures.push([ mesure.date, mesure.valeur ]);
 
 				// Collecte et assignation des données annexes
@@ -124,11 +124,17 @@ iotqvt.service('MesureService',
 			};
 
 			var loadMesure = function(capteur){
+				cleanMesure(capteur);
 				WebServiceFactory.load(capteur.id, capteur.iot);
 			}
 			var cleanMesure = function(capteur){
 				var key = capteur.iot.concat(capteur.id);
-				capteurData[key] = {mesures:[], max :{} , min:{}, soleil:{}, capteur:{}};
+//				 delete capteurData[key];
+//				 capteurData[key] = {mesures:[], max :{} , min:{}, soleil:{}, capteur:{}};
+				  capteurData[key].mesures.length = 0;
+//				 _.drop(capteurData[key].mesures, length -1);
+					_.assign(capteurData[key].last, {});
+			
 			}
 			return {
 				capteurData : capteurData,

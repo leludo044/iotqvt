@@ -175,7 +175,7 @@ iotqvt.controller('ChartCtrl', [
 				series : [ {
 					name : this.capteur.typeCapteur.libelle,
 					data : MesureService.capteurData[this.idCapteur].mesures,
-					color:"#00004A"
+					color:this.capteur.typeCapteur.couleur
 				}
 
 				],

@@ -3,6 +3,7 @@ package fr.iotqvt.master.modele.metier;
 public class TypeCapteur {
 	private String libelle;
 	private String unite;
+	private String couleur;
 	public String getLibelle() {
 		return libelle;
 	}
@@ -14,6 +15,12 @@ public class TypeCapteur {
 	}
 	public void setUnite(String unite) {
 		this.unite = unite;
+	}
+	public String getCouleur() {
+		return couleur;
+	}
+	public void setCouleur(String couleur) {
+		this.couleur = couleur;
 	}
 	
 	

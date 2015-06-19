@@ -75,6 +75,7 @@ public class TypeCapteurDAO implements DaoInterface<TypeCapteur, String> {
 		try {
 			type.setLibelle(rs.getString("libelle"));
 			type.setUnite(rs.getString("unite"));
+			type.setCouleur(rs.getString("couleur"));
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

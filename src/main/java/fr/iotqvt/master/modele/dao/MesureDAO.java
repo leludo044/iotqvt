@@ -116,7 +116,7 @@ public class MesureDAO implements DaoInterface<Mesure, String> {
 			TypeCapteur type = new TypeCapteur();
 			type.setLibelle(rs.getString("typecapteur_libelle"));
 			type.setUnite(rs.getString("unite"));
-			
+			type.setCouleur(rs.getString("couleur"));
 			
 			Capteur capteur = new Capteur();
 			capteur.setId(rs.getString("id"));

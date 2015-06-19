@@ -17,14 +17,20 @@
 			<div class="row text-center h3">
 				{{capteur.typeCapteur.libelle}} ({{capteur.typeCapteur.unite}})</div>
 			<div class="row">
+				<div class="col-xs-3"></div>
+				<div class="h3 col-xs-6 btn-success text-center">{{chartCtrl.last.valeur}}{{capteur.typeCapteur.unite}}</div>
+				<div class="col-xs-3"></div>
+			</div>
+			<div class="row">
 				<div class="col-xs-3 btn-primary text-center">{{chartCtrl.min.valeur}}{{capteur.typeCapteur.unite}}</div>
 				<div class="col-xs-6"></div>
 				<div class="col-xs-3 btn-danger text-center">{{chartCtrl.max.valeur}}{{capteur.typeCapteur.unite}}</div>
 			</div>
-			<div class="row">
-				<div class="col-xs-3"></div>
-				<div class="h3 col-xs-6 btn-success text-center">{{chartCtrl.last.valeur}}{{capteur.typeCapteur.unite}}</div>
-				<div class="col-xs-3"></div>
+		</div>
+		<div class="well">
+			<div class="row text-center">
+				<img src="images/soleil.png" ng-show="chartCtrl.soleil.valeur" /> <img
+					src="images/nuageux.png" ng-hide="chartCtrl.soleil.valeur" />
 			</div>
 			<div class="row">
 				<div class="col-xs-3 btn-primary text-center">
@@ -38,12 +44,6 @@
 				<div class="col-xs-3 btn-danger text-center">
 					{{chartCtrl.range.to}}{{capteur.typeCapteur.unite}}</div>
 
-			</div>
-		</div>
-		<div class="well">
-			<div class="row text-center">
-				<img src="images/soleil.png" ng-show="chartCtrl.soleil.valeur" /> <img
-					src="images/nuageux.png" ng-hide="chartCtrl.soleil.valeur" />
 			</div>
 		</div>
 	</div>

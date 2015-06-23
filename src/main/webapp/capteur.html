@@ -1,50 +1,37 @@
 
 <div ng-controller="ChartCtrl as chartCtrl" class="row">
 	<div class="col-md-1">
-		<button class="btn" ng-click="chartCtrl.loadHisto()">
+		<button class="btn" ng-click="chartCtrl.loadHisto()" title="Historique">
 			<span class="glyphicon glyphicon-download-alt"></span>
 		</button>
-		<button class="btn" ng-click="chartCtrl.clean()">
+		<button class="btn" ng-click="chartCtrl.clean()" title="Remise à zéro">
 			<span class="glyphicon glyphicon-erase"></span>
 		</button>
 	</div>
 	<div class="col-md-8">
 		<!-- 	<section class="range-slider" max="chartCtrl.max" min="0" ng-model="chartCtrl.range" step="0.5" data-range-slider=""> -->
-		<highchart id="chart1" config="chartCtrl.config" style="height:320px;"></highchart>
+		<highchart id="chart1" config="chartCtrl.config" style="height:155px;"></highchart>
 	</div>
-	<div class="col-md-3">
-		<div class="well">
-			<div class="row text-center h3">
+	<div class="col-md-3 well">
+			<div class="row text-center h4">
 				{{capteur.typeCapteur.libelle}} ({{capteur.typeCapteur.unite}})</div>
 			<div class="row">
-				<div class="col-xs-3"></div>
-				<div class="h3 col-xs-6 btn-success text-center">{{chartCtrl.last.valeur}}{{capteur.typeCapteur.unite}}</div>
-				<div class="col-xs-3"></div>
-			</div>
-			<div class="row">
 				<div class="col-xs-3 btn-primary text-center">{{chartCtrl.min.valeur}}{{capteur.typeCapteur.unite}}</div>
-				<div class="col-xs-6"></div>
+				<div class="col-xs-6 btn-success text-center">{{chartCtrl.last.valeur}}{{capteur.typeCapteur.unite}}</div>
 				<div class="col-xs-3 btn-danger text-center">{{chartCtrl.max.valeur}}{{capteur.typeCapteur.unite}}</div>
 			</div>
-		</div>
-		<div class="well">
-			<div class="row text-center">
-				<img src="images/soleil.png" ng-show="chartCtrl.soleil.valeur" width="50px"/> <img
-					src="images/nuageux.png" ng-hide="chartCtrl.soleil.valeur" width="50px"/>
-			</div>
+			<div class="row"><div class="h5">&nbsp;</div></div>
 			<div class="row">
 				<div class="col-xs-3 btn-primary text-center">
 					{{chartCtrl.range.from}}{{capteur.typeCapteur.unite}}</div>
-				<div class="col-xs-3 text-left">
-					<span class="glyphicon glyphicon-triangle-left" aria-hidden="true"></span>
-				</div>
-				<div class="col-xs-3 text-right">
-					<span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>
+				<div class="col-xs-6 text-center">
+					<img src="images/soleil.png" ng-show="chartCtrl.soleil.valeur"
+						width="40px" /> <img src="images/nuageux.png"
+						ng-hide="chartCtrl.soleil.valeur" width="40px" />
 				</div>
 				<div class="col-xs-3 btn-danger text-center">
 					{{chartCtrl.range.to}}{{capteur.typeCapteur.unite}}</div>
 
 			</div>
-		</div>
 	</div>
 </div>

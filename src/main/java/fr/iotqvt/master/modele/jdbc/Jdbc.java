@@ -271,6 +271,16 @@ public class Jdbc implements JdbcInterface {
     }
 
     public Connection getConnexion() {
+    	try {
+			if(connexion.isClosed()){
+				System.out.println("connexion BDD close");
+				Jdbc.getInstance().connecter();
+				
+			}
+		} catch (SQLException | ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         return connexion;
     }
 

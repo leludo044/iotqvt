@@ -95,21 +95,7 @@ public class WebsocketServer {
 	
 	private void identifier(IdentificationMessage msg) throws Exception {
 		System.out.println("Identification : "+msg.getCedec());
-		// TODO Persister en base
-		try {
-			Jdbc.getInstance().connecter();
-		} catch (ClassNotFoundException | SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
 		IOTDAO iotDao = new IOTDAO();
 		iotDao.create(msg.getCedec());
-		try {
-			Jdbc.getInstance().deconnecter();
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-
 	}
 }

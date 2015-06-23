@@ -159,3 +159,15 @@ h1 {
 /* 	background-color: #ff0080;  */
 /* 	border-radius: 100px; */
 /* } */
+
+.navbar-default {
+	background-image: none;
+    background-color: #03a9f4;
+}
+.navbar-default .navbar-link {
+    color: #ffffff;
+}
+.navbar-default .navbar-brand {
+    font-size: 24px;
+    color: #FFFFFF;
+}

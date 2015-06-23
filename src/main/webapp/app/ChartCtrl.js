@@ -97,7 +97,10 @@ iotqvt.controller('ChartCtrl', [
 
 				},
 
-		         
+				legend: {
+					enabled: false
+				},
+				
 				xAxis : {
 					type : 'datetime',
 					dateTimeLabelFormats : {
@@ -111,7 +114,7 @@ iotqvt.controller('ChartCtrl', [
 		            minorTickColor: '#000000',
 		            minorTickWidth: 1,
 					title : {
-	
+						text: null,
 						style: { "color": "#00002E", "fontWeight": "bold" }
 					}
 				},
@@ -131,18 +134,13 @@ iotqvt.controller('ChartCtrl', [
 				tooltip : {
 					valueSuffix : this.capteur.typeCapteur.unite
 				},
-				legend : {
-					enabled : false,
-					align : 'right',
-					verticalAlign : 'middle'
-				},
 
 				series : [ {
 					name : this.capteur.typeCapteur.libelle,
 					data : MesureService.capteurData[this.idCapteur].mesures,
-					color:this.capteur.typeCapteur.couleur
+					color:this.capteur.typeCapteur.couleur,
+					showInLegend: false 
 				}
-
 				],
 				title : {
 					text : '',

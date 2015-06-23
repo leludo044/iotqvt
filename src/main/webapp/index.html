@@ -16,23 +16,24 @@
 <body>
 	<div class="container">
 		<div ng-app="iotqvt">
-			<nav class="navbar navbar-inverse">
-				<div id="menu">
+			<nav class="navbar navbar-default">
+					<p class="navbar-brand">Qualité de vie au travail et facteurs
+						environnementaux</p>
+					<div class="navbar-right">
 					<img id="profil" src="images/avatar2.jpg" alt="profil"
-						class="img-circle"> <a id="nom1" href="#"
-						class="navbar-link">Pseudo </a>
-					<button id="parametre" type="button"
-						class="btn btn-default navbar-btn">
-						<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-					</button>
+						class="img-circle" /> <a id="nom1" href="#" class="navbar-link">Pseudo
+					</a>
+					</div>
 					<button id="deconnexion" type="button"
-						class="btn btn-default btn-primary navbar-btn">
+						class="btn btn-primary navbar-btn" title="Déconnexion">
 						<span class="glyphicon glyphicon-off" aria-hidden="true"></span>
 					</button>
-				</div>
+					<button id="parametre" type="button"
+						class="btn btn-default navbar-btn" title="Paramètres">
+						<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+					</button>
 			</nav>
 			<div ng-controller="IOTCtrl as iotCtrl">
-				<h1>Qualité de vie au travail et facteurs environnementaux</h1>
 				<div>
 					<form class="row">
 						<div class="col-md-3">
@@ -88,7 +89,7 @@
 	<script type="text/javascript" src="./lib/angular/angular.js"></script>
 	<script src="./lib/bootstrap-3.3.4-dist/js/bootstrap.min.js"></script>
 	<script src="./lib/highcharts/highcharts.js"></script>
-<!-- 	<script src="./lib/highstock/highstock.js"></script> -->
+	<!-- 	<script src="./lib/highstock/highstock.js"></script> -->
 	<script src="./lib/highcharts-ng/highcharts-ng.js"></script>
 	<script src="./lib/lodash/lodash.js"></script>
 	<script src="./lib/ng-range-slider/ng-range-slider.js"

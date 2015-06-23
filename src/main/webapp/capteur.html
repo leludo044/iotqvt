@@ -10,7 +10,7 @@
 	</div>
 	<div class="col-md-8">
 		<!-- 	<section class="range-slider" max="chartCtrl.max" min="0" ng-model="chartCtrl.range" step="0.5" data-range-slider=""> -->
-		<highchart id="chart1" config="chartCtrl.config"></highchart>
+		<highchart id="chart1" config="chartCtrl.config" style="height:320px;"></highchart>
 	</div>
 	<div class="col-md-3">
 		<div class="well">
@@ -29,8 +29,8 @@
 		</div>
 		<div class="well">
 			<div class="row text-center">
-				<img src="images/soleil.png" ng-show="chartCtrl.soleil.valeur" /> <img
-					src="images/nuageux.png" ng-hide="chartCtrl.soleil.valeur" />
+				<img src="images/soleil.png" ng-show="chartCtrl.soleil.valeur" width="50px"/> <img
+					src="images/nuageux.png" ng-hide="chartCtrl.soleil.valeur" width="50px"/>
 			</div>
 			<div class="row">
 				<div class="col-xs-3 btn-primary text-center">
